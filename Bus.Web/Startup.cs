@@ -1,4 +1,5 @@
 using Bus.Repo;
+using Bus.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -28,6 +29,9 @@ namespace Bus.Web
             services.AddDbContext<ApplicationDbContext>(
                 options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))
                 );
+            services.AddScoped(typeof(IRepository<>),typeof(Repository<>));
+            services.AddTransient<IBusdetailsService, BusDetailsService>();
+            services.AddTransient<IRouteService, RouteService>();
             services.AddControllersWithViews();
         }
 
