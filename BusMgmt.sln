@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.1.32319.34
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bus.Web", "Bus.Web\Bus.Web.csproj", "{0AB19999-6066-4A60-BFF9-01C93CBBE935}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bus.Web", "Bus.Web\Bus.Web.csproj", "{0AB19999-6066-4A60-BFF9-01C93CBBE935}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bus.Services", "Bus.Services\Bus.Services.csproj", "{9DB3BE47-A134-40FE-977B-AB5DDDC88977}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bus.Data", "Bus.Data\Bus.Data.csproj", "{2215505B-59B7-4BA2-9475-388B184D245E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
