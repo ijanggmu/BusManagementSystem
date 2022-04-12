@@ -16,5 +16,7 @@ namespace Bus.Repo
             base.OnModelCreating(modelBuilder);
         }
         public DbSet<Route> Routes { get; set; }
+
+        public DbSet<BusDetails> BusDetails { get; set; }
     }
 }
