@@ -52,6 +52,9 @@ namespace Bus.Repo.Migrations
                     b.Property<int>("NumberOfStops")
                         .HasColumnType("int");
 
+                    b.Property<string>("RouteName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.ToTable("Routes");

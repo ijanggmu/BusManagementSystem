@@ -27,6 +27,7 @@ namespace Bus.Repo.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    RouteName = table.Column<string>(nullable: true),
                     NumberOfStops = table.Column<int>(nullable: false),
                     BusCount = table.Column<int>(nullable: false)
                 },
