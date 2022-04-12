@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Bus.Repo.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220412112306_first-migration")]
-    partial class firstmigration
+    [Migration("20220412113559_NewTables")]
+    partial class NewTables
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
