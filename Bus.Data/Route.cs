@@ -7,9 +7,7 @@ namespace Bus.Data
     {
         [Key]
         public int RouteId { get; set; }
-
         public int NumberOfStops { get; set; }
-
         public int BusCount { get; set; }
 
     }
