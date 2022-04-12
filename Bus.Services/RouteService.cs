@@ -29,7 +29,7 @@ namespace Bus.Services
             return _routeRepository.GetById(id);
         }
 
-        public void InserRoute(Route route)
+        public void InsertRoute(Route route)
         {
             _routeRepository.Create(route);
         }
