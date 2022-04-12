@@ -1,4 +1,5 @@
 using Bus.Repo;
+using Bus.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -26,9 +27,16 @@ namespace Bus.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(
-                options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))
+                options => options.UseSqlServer(
+                    Configuration.GetConnectionString("DefaultConnection"))
                 );
+
+            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+            services.AddTransient<IRouteService, RouteService>();
+            services.AddTransient<IBusdetailsService, BusDetailsService>();
+            
             services.AddControllersWithViews();
+         
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

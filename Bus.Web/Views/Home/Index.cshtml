@@ -1,8 +1,24 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+<div class="container">
+    <div class="row">
+        <div class="card" style="width: 18rem;  height:350px; width:300px; margin:20px;">
+            <img class="card-img-top" src="~/images/BusRoute.jpg" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Route Details</h5>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+                <a class="btn btn-info" asp-action="Index" asp-controller="Route">Route Details</a>
+            </div>
+        </div>
+
+        <div class="card" style="width: 18rem; height:350px; width:300px; margin:20px">
+            <img class="card-img-top" src="~/images/Bus.jpg" alt="Card image cap" style="height:240px;">
+            <div class="card-body">
+                <h5 class="card-title">Bus Details</h5>
+
+                <a class="btn btn-info" asp-action="Index" asp-controller="Bus">Bus Details</a>
+            </div>
+        </div>
+    </div>
 </div>
