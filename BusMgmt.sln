@@ -1,13 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30804.86
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32319.34
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bus.Web", "Bus.Web\Bus.Web.csproj", "{0AB19999-6066-4A60-BFF9-01C93CBBE935}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bus.Services", "Bus.Services\Bus.Services.csproj", "{9DB3BE47-A134-40FE-977B-AB5DDDC88977}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bus.Services", "Bus.Services\Bus.Services.csproj", "{9DB3BE47-A134-40FE-977B-AB5DDDC88977}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bus.Data", "Bus.Data\Bus.Data.csproj", "{2215505B-59B7-4BA2-9475-388B184D245E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bus.Data", "Bus.Data\Bus.Data.csproj", "{2215505B-59B7-4BA2-9475-388B184D245E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bus.Repo", "Bus.Repo\Bus.Repo.csproj", "{510BEC47-6082-4295-BDA1-C74E86C4208B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,6 +25,14 @@ Global
 		{9DB3BE47-A134-40FE-977B-AB5DDDC88977}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9DB3BE47-A134-40FE-977B-AB5DDDC88977}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9DB3BE47-A134-40FE-977B-AB5DDDC88977}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2215505B-59B7-4BA2-9475-388B184D245E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2215505B-59B7-4BA2-9475-388B184D245E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2215505B-59B7-4BA2-9475-388B184D245E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2215505B-59B7-4BA2-9475-388B184D245E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{510BEC47-6082-4295-BDA1-C74E86C4208B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{510BEC47-6082-4295-BDA1-C74E86C4208B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{510BEC47-6082-4295-BDA1-C74E86C4208B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{510BEC47-6082-4295-BDA1-C74E86C4208B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
