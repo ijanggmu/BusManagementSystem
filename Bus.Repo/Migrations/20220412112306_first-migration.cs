@@ -2,7 +2,7 @@
 
 namespace Bus.Repo.Migrations
 {
-    public partial class RouteDbCreate : Migration
+    public partial class firstmigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -27,6 +27,7 @@ namespace Bus.Repo.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    RouteName = table.Column<string>(nullable: true),
                     NumberOfStops = table.Column<int>(nullable: false),
                     BusCount = table.Column<int>(nullable: false)
                 },
