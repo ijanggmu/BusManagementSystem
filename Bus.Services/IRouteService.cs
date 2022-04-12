@@ -10,8 +10,8 @@ namespace Bus.Services
         IEnumerable<Route> GetAllRoute();
         Route GetRouteById(int id);
 
-        void InserRoute(Route route);
-        void UpdaetRoute(Route route);
+        void InsertRoute(Route route);
+        void UpdateRoute(Route route);
         void DeleteRoute(int id);
     }
 }

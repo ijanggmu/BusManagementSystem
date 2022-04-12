@@ -34,7 +34,7 @@ namespace Bus.Services
             _routeRepository.Create(route);
         }
 
-        public void UpdaetRoute(Route route)
+        public void UpdateRoute(Route route)
         {
             _routeRepository.Update(route);
         }
