@@ -9,5 +9,8 @@ namespace Bus.Data
         public int BusId { get; set; }
 
         public string BusName { get; set; }
+        public int BusNo { get; set; }
+        public string routeName { get; set; }
+       
     }
 }
