@@ -1,4 +1,5 @@
-﻿using Bus.Services;
+﻿using Bus.Data;
+using Bus.Services;
 using Bus.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -29,6 +30,50 @@ namespace Bus.Web.Controllers
                
             }
             return View(busToView);
+        }
+        public IActionResult Create()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Create(BusDetailsViewModel model)
+        {
+            var bus = new BusDetails();
+            bus.Id = model.Id;
+            bus.BusName = model.BusName;
+            bus.BusNo = model.BusNo;
+            bus.routeName = model.routeName;
+            _busservics.AddBuss(bus);
+            return RedirectToAction("index");
+
+        }
+        public IActionResult Delete(int id)
+        {
+            _busservics.DeleteBus(id);
+            return RedirectToAction(@"index");
+        }
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            var edit = new BusDetailsViewModel();
+            BusDetails details = _busservics.GetBusbyID(id);
+            edit.Id = details.Id;
+            edit.BusName = details.BusName;
+            edit.BusNo = details.BusNo;
+            edit.routeName = details.routeName;
+            return View(edit);
+
+        }
+        [HttpPost]
+        public IActionResult Edit(BusDetailsViewModel bus)
+        {
+            BusDetails b = _busservics.GetBusbyID(bus.Id);
+            b.BusName = bus.BusName;
+            b.BusNo = bus.BusNo;
+            b.routeName = bus.routeName;
+            _busservics.UpdateBus(b);
+            return RedirectToAction("index");
+
         }
     }
 }

@@ -311,6 +311,7 @@ BenchmarkDotNet.Artifacts/
 # ASP.NET Scaffolding
 ScaffoldingReadMe.txt
 
+
 # StyleCop
 StyleCopReport.xml
 
@@ -496,6 +497,7 @@ ASALocalRun/
 healthchecksdb
 
 # Backup folder for Package Reference Convert tool in Visual Studio 2017
+Bus.Repo/Migrations/	
 MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder

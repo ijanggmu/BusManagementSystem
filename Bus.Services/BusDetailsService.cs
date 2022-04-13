@@ -21,7 +21,7 @@ namespace Bus.Services
             _busRepo.Create(bus);
         }
 
-        public void DeletBus(int id)
+        public void DeleteBus(int id)
         {
             var bus = _busRepo.GetById(id);
             _busRepo.Delete(bus);
