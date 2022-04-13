@@ -30,11 +30,9 @@ namespace Bus.Web
                 options => options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection"))
                 );
-
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddTransient<IRouteService, RouteService>();
             services.AddTransient<IBusdetailsService, BusDetailsService>();
-            
             services.AddControllersWithViews();
          
         }

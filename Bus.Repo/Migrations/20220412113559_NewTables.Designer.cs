@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Bus.Repo.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220412102449_RouteDbCreate")]
-    partial class RouteDbCreate
+    [Migration("20220412113559_NewTables")]
+    partial class NewTables
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -53,6 +53,9 @@ namespace Bus.Repo.Migrations
 
                     b.Property<int>("NumberOfStops")
                         .HasColumnType("int");
+
+                    b.Property<string>("RouteName")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

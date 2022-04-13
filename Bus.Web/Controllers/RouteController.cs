@@ -48,15 +48,78 @@ namespace Bus.Web.Controllers
         {
             Route r = new Route()
             {
-                Id = rvm.Id,
                 RouteName = rvm.RouteName,
                 NumberOfStops = rvm.NumberOfStops,
                 BusCount = rvm.BusCount,
             };
 
+            //passing Category obj into the InserUser() function
             _routeService.InsertRoute(r);
+            if (r.Id > 0)
+            {
+                return RedirectToAction("Index");
+            }
+            return View(rvm);
+        }
+
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            RouteViewModel rvm = new RouteViewModel();
+            if(id != 0)
+            {
+                Route obj = _routeService.GetRouteById(id);
+                rvm.RouteName = obj.RouteName;
+                rvm.NumberOfStops = obj.NumberOfStops;
+                rvm.BusCount = obj.BusCount;
+            }
+             
+            return View(rvm);
+        }
+
+        [HttpPost]
+        [AutoValidateAntiforgeryToken]
+        public IActionResult Edit(RouteViewModel model)
+        {
+            Route rvm = _routeService.GetRouteById(model.Id);
+            rvm.RouteName = model.RouteName;
+            rvm.NumberOfStops = model.NumberOfStops;
+            rvm.BusCount = model.BusCount;
+
+            _routeService.UpdateRoute(rvm);
+
+            if(model.Id > 0)
+            {
+                return RedirectToAction("Index");
+            }
+
+            return View(model);
+        }
+
+
+        [HttpGet]
+        public IActionResult Delete(int id)
+        {
+            RouteViewModel rvm = new RouteViewModel();
+            if (id != 0)
+            {
+                Route obj = _routeService.GetRouteById(id);
+                rvm.RouteName = obj.RouteName;
+                rvm.NumberOfStops = obj.NumberOfStops;
+                rvm.BusCount = obj.BusCount;
+            }
 
             return View(rvm);
         }
+
+        [HttpPost]
+        [AutoValidateAntiforgeryToken]
+        public IActionResult DeletePost(int id)
+        {
+            _routeService.DeleteRoute(id);
+
+            return RedirectToAction("Index");
+        }
+
     }
 }

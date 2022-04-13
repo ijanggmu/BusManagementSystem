@@ -1,0 +1,43 @@
+﻿@model Bus.Web.Models.RouteViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit Route Details</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="RouteName" class="control-label"></label>
+                <input asp-for="RouteName" class="form-control" />
+                <span asp-validation-for="RouteName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NumberOfStops" class="control-label"></label>
+                <input asp-for="NumberOfStops" class="form-control" />
+                <span asp-validation-for="NumberOfStops" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BusCount" class="control-label"></label>
+                <input asp-for="BusCount" class="form-control" />
+                <span asp-validation-for="BusCount" class="text-danger"></span>
+            </div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

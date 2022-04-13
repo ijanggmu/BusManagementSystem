@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Bus.Web.Models.BusDetailsViewModel>
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<div class="container-md">
+    <div class="row">
+        <div class="col-md-3 btn btn-primary m-3">Bus Details</div>
+        <div class="col-md-3 btn btn-primary m-3 ">Add Bus</div>
+    </div>
+    <div class="row">
+        <div class="table table-striped m-5">
+     <table>
+            <thead>
+                <th>Bus No.</th>
+                <th>Bus Name </th>
+                <th>Route details</th>
+                <th></th>
+                <th></th>
+            </th>
+            <tbody>
+                    @foreach(var item in Model)
+                    {
+                          <tr>
+                         <td>@item.BusNo</td>
+                         <td>@item.BusName</td>
+                         <td>@item.routeName</td>
+                         <td><a class="btn btn-sm btn-warning" asp-controller="BusDetails" asp-route-id="@item.Id " asp-action="Edit">Edit</a></td>
+                         <td><a class="btn btn-sm btn-danger" asp-controller="BusDetails" asp-route-id="@item.Id " asp-action="Delete">Delete</a></td>
+                     </tr>
+                }
+                </tbody>
+        </table>
+        </div>
+        </div>
+
+</div>

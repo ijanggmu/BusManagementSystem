@@ -10,5 +10,6 @@ namespace Bus.Data
         public int BusNo { get; set; }
         public string routeName { get; set; }
        
+        public virtual Route Route { get; set; }
     }
 }
