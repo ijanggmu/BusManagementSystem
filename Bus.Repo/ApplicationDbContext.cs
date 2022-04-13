@@ -14,6 +14,10 @@ namespace Bus.Repo
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Route>()
+                .HasMany(b => b.BusDetails)
+                .WithOne(r => r.Route);
         }
         public DbSet<Route> Routes { get; set; }
 

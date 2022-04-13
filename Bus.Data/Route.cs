@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Bus.Data
@@ -9,5 +10,6 @@ namespace Bus.Data
         public int NumberOfStops { get; set; }
         public int BusCount { get; set; }
 
+        public ICollection<BusDetails> BusDetails { get; set; }
     }
 }
