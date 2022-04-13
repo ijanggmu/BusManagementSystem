@@ -1,24 +1,54 @@
-﻿@{
+﻿@model IEnumerable<Bus.Web.Models.BusRouteViewModel>
+@{
     ViewData["Title"] = "Home Page";
 }
-<div class="container">
-    <div class="row">
-        <div class="card" style="width: 18rem;  height:350px; width:300px; margin:20px;">
-            <img class="card-img-top" src="~/images/BusRoute.jpg" alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">Route Details</h5>
 
-                <a class="btn btn-info" asp-action="Index" asp-controller="Route">Route Details</a>
-            </div>
-        </div>
+<br />
+<h1 class="text-info pl-3">Bus-Route-Details</h1>
+<br />
 
-        <div class="card" style="width: 18rem; height:350px; width:300px; margin:20px">
-            <img class="card-img-top" src="~/images/Bus.jpg" alt="Card image cap" style="height:240px;">
-            <div class="card-body">
-                <h5 class="card-title">Bus Details</h5>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                Bus Name
+            </th>
+            <th>
+                Bus No.
+            </th>
+            <th>
+                Route Id
+            </th>
+            <th>
+                Route Name
+            </th>
+            <th>
 
-                <a class="btn btn-info" asp-action="Index" asp-controller="BusDetails">Bus Details</a>
-            </div>
-        </div>
-    </div>
-</div>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.BusDetails.BusName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BusDetails.BusNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BusDetails.RouteID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Route.RouteName)
+            </td>
+            <td>
+                <a asp-controller="Route" asp-action="TicketBook" asp-route-id="@item.Route.Id">
+                    BookTicket
+                </a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

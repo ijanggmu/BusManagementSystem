@@ -1,4 +1,5 @@
 ﻿using Bus.Data;
+using Bus.Repo;
 using Bus.Services;
 using Bus.Web.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -12,9 +13,13 @@ namespace Bus.Web.Controllers
     public class RouteController : Controller
     {
         private readonly IRouteService _routeService;
-        public RouteController(IRouteService routeService)
+        private readonly ITicketService _ticketService;
+        private readonly ApplicationDbContext _db;
+        public RouteController(IRouteService routeService, ITicketService ticketService, ApplicationDbContext db)
         {
+            _ticketService = ticketService;
             _routeService = routeService;
+            _db = db;
         }
         public IActionResult Index()
         {
@@ -72,8 +77,7 @@ namespace Bus.Web.Controllers
                 rvm.RouteName = obj.RouteName;
                 rvm.NumberOfStops = obj.NumberOfStops;
                 rvm.BusCount = obj.BusCount;
-            }
-             
+            } 
             return View(rvm);
         }
 
@@ -121,5 +125,29 @@ namespace Bus.Web.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpGet]
+        public IActionResult TicketBook()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult TicketBook(int id, string fullname, string address, int BusNo, DateTime departuretime, int seatnumber)
+        {
+            //var busList = (from b in _db.BusDetails
+            //               select b.BusNo).ToList();
+
+            Ticket ticket = new Ticket();
+            ticket.RouteId = id;
+            ticket.FullName = fullname;
+            ticket.Address = address;
+            ticket.BusNo = BusNo;
+            ticket.DepartureDateTime = departuretime;
+            ticket.SeatNumber = seatnumber;
+
+            _ticketService.InsertTicket(ticket);
+
+            return RedirectToAction("index");
+        }
     }
 }

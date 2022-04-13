@@ -11,9 +11,9 @@ namespace Bus.Data
         public string BusName { get; set; }
         [Required]
         public int BusNo { get; set; }
+        public int SeatCount { get; set; }
         [Required]
-        public string routeName { get; set; }
-       
+        public int RouteID { get; set; }
         public virtual Route Route { get; set; }
     }
 }

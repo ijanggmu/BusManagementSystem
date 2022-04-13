@@ -1,4 +1,5 @@
-﻿using Bus.Web.Models;
+﻿using Bus.Repo;
+using Bus.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -12,15 +13,25 @@ namespace Bus.Web.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private readonly ApplicationDbContext _db;
+        public HomeController(ApplicationDbContext db, ILogger<HomeController> logger)
         {
+            _db = db;
             _logger = logger;
         }
 
         public IActionResult Index()
         {
-            return View();
+            var model = (from b in _db.BusDetails
+                         join r in _db.Routes
+                         on b.RouteID equals r.Id
+                         select new BusRouteViewModel
+                         {
+                             Route = r,
+                             BusDetails = b
+                         });
+
+            return View(model);
         }
 
         public IActionResult Privacy()

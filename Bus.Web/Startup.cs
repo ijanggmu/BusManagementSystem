@@ -33,6 +33,7 @@ namespace Bus.Web
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddTransient<IRouteService, RouteService>();
             services.AddTransient<IBusdetailsService, BusDetailsService>();
+            services.AddTransient<ITicketService, TicketService>();
             services.AddControllersWithViews();
          
         }

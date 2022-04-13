@@ -22,5 +22,7 @@ namespace Bus.Repo
         public DbSet<Route> Routes { get; set; }
 
         public DbSet<BusDetails> BusDetails { get; set; }
+
+        public DbSet<Ticket> Ticket { get; set; }
     }
 }
