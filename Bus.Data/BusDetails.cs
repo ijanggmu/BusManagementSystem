@@ -14,5 +14,6 @@ namespace Bus.Data
         [Required]
         public string routeName { get; set; }
        
+        public virtual Route Route { get; set; }
     }
 }

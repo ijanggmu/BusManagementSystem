@@ -15,7 +15,7 @@ namespace Bus.Web.Models
         [DisplayName("Route Name")]
         public string RouteName { get; set; }
 
-        [DisplayName("Number Of Stops")] 
+        [DisplayName("Number Of Stops")]
         public int NumberOfStops { get; set; }
 
         [DisplayName("Bus Count")]
