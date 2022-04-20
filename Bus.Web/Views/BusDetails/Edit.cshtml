@@ -18,8 +18,22 @@
         </div>
         <div>
             <label asp-for="routeId">Route Name</label>
-            <input type="text" class="form-control" asp-for="routeId" />
+            
+            <select class="form-select" asp-for="routeId">
+            <option value="">Pick one</option>
+            <option selected="selected" value="1"></option>
+            <option value="1">Lubhu-Ratnapark</option>
+            <option value="2">Lagenkhel-Ratnapark</option>
+            <option value="3">Wednesday</option>
+            <option value="4">Thursday</option>
+            <option value="5">Friday</option>
+            <option value="6">Saturday</option>
+        </select>
         </div>
+        @*<div>
+            
+            <input type="text" class="form-control" asp-for="routeId" />
+        </div>*@
         <div>
             <button class="btn btn-success mt-2" type="submit" value="submit">Edit</button>
             <a class="btn btn-dark mt-2 " asp-action="index">Back to List</a>

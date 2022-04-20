@@ -31,9 +31,24 @@ namespace Bus.Web.Controllers
                                BusName = b.BusName,
                                BusNo = b.BusNo,
                                RouteName = r.RouteName,
-                               routeId = b.RouteId
+ 
                            };
             return View(userView);
+        }
+        public IActionResult RouteDetailView()
+        {
+            var routeDetails = from b in _db.BusDetails
+                               join r in _db.Routes
+                               on b.RouteId equals r.Id and 
+                               orderby r.RouteName
+                               select new RouteDetailsViewModel
+                               {
+                                   RouteName = r.RouteName,
+                                   BusName = b.BusName,
+                                   TotalBus=r.BusDetails.Count()
+                                   
+                               };
+            return View(routeDetails);
         }
 
         public IActionResult Privacy()

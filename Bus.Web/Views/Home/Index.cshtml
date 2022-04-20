@@ -9,7 +9,6 @@
                 <th>Bus No.</th>
                 <th>Bus Name </th>
                 <th>Route details</th>
-                <th>Route Id</th>
             </th>
             <tbody>
                     @foreach(var item in Model)
@@ -17,8 +16,7 @@
                           <tr>
                          <td>@item.BusNo</td>
                          <td>@item.BusName</td>
-                         <td><a asp-controller="Route"asp-action="Details">@item.RouteName</a></td>
-                         <td>@item.routeId</td>
+                         <td><a asp-controller="Home"asp-action="RouteDetailView">@item.RouteName</a></td>
                      </tr>
                 }
                 </tbody>
