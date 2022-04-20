@@ -120,6 +120,6 @@ namespace Bus.Web.Controllers
 
             return RedirectToAction("Index");
         }
-
+    
     }
 }

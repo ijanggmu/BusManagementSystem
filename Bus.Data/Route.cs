@@ -9,7 +9,6 @@ namespace Bus.Data
         public string RouteName { get; set; }
         public int NumberOfStops { get; set; }
         public int BusCount { get; set; }
-
         public ICollection<BusDetails> BusDetails { get; set; }
     }
 }

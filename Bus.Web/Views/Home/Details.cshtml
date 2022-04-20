@@ -1,4 +1,4 @@
-﻿@model IEnumerable<BusRouteViewModel>
+﻿@model IEnumerable<BusDetailsViewModel>
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -6,19 +6,17 @@
         <div class="table table-striped m-5">
      <table>
             <thead>
-                <th>Bus No.</th>
-                <th>Bus Name </th>
-                <th>Route details</th>
-                <th>Route Id</th>
+                <th>TotalBus</th>
+                <th>Route Details </th>
+               
             </th>
             <tbody>
                     @foreach(var item in Model)
                     {
                           <tr>
-                         <td>@item.BusNo</td>
+                         <td>@item.</td>
                          <td>@item.BusName</td>
-                         <td><a asp-controller="Route"asp-action="Details">@item.RouteName</a></td>
-                         <td>@item.routeId</td>
+                       
                      </tr>
                 }
                 </tbody>

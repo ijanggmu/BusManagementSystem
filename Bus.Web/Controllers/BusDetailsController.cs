@@ -25,7 +25,7 @@ namespace Bus.Web.Controllers
                 entity.Id = items.Id;
                 entity.BusNo = items.BusNo;
                 entity.BusName = items.BusName;
-                entity.routeName = items.routeName;
+                entity.routeId = items.RouteId;
                 busToView.Add(entity);
                
             }
@@ -42,7 +42,7 @@ namespace Bus.Web.Controllers
             bus.Id = model.Id;
             bus.BusName = model.BusName;
             bus.BusNo = model.BusNo;
-            bus.routeName = model.routeName;
+            bus.RouteId = model.routeId;
             _busservics.AddBuss(bus);
             return RedirectToAction("index");
 
@@ -60,7 +60,7 @@ namespace Bus.Web.Controllers
             edit.Id = details.Id;
             edit.BusName = details.BusName;
             edit.BusNo = details.BusNo;
-            edit.routeName = details.routeName;
+            edit.routeId = details.RouteId;
             return View(edit);
 
         }
@@ -70,10 +70,11 @@ namespace Bus.Web.Controllers
             BusDetails b = _busservics.GetBusbyID(bus.Id);
             b.BusName = bus.BusName;
             b.BusNo = bus.BusNo;
-            b.routeName = bus.routeName;
+            b.RouteId = bus.routeId;
             _busservics.UpdateBus(b);
             return RedirectToAction("index");
 
         }
+        
     }
 }
