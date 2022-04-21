@@ -39,8 +39,7 @@ namespace Bus.Web.Controllers
         {
             var routeDetails = from b in _db.BusDetails
                                join r in _db.Routes
-                               on b.RouteId equals r.Id and 
-                               orderby r.RouteName
+                               on b.RouteId equals r.Id 
                                select new RouteDetailsViewModel
                                {
                                    RouteName = r.RouteName,
