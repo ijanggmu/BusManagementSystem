@@ -28,6 +28,7 @@ namespace Bus.Web.Controllers
                            on b.RouteId equals r.Id
                            select new BusRouteViewModel
                            {
+                               routeId=r.Id,
                                BusName = b.BusName,
                                BusNo = b.BusNo,
                                RouteName = r.RouteName,
@@ -35,11 +36,12 @@ namespace Bus.Web.Controllers
                            };
             return View(userView);
         }
-        public IActionResult RouteDetailView()
+        public IActionResult RouteDetailView(int Id)
         {
             var routeDetails = from b in _db.BusDetails
                                join r in _db.Routes
-                               on b.RouteId equals r.Id 
+                               on b.RouteId equals r.Id
+                               where b.RouteId ==Id
                                select new RouteDetailsViewModel
                                {
                                    RouteName = r.RouteName,

@@ -16,7 +16,7 @@
                           <tr>
                          <td>@item.BusNo</td>
                          <td>@item.BusName</td>
-                         <td><a asp-controller="Home"asp-action="RouteDetailView">@item.RouteName</a></td>
+                         <td><a asp-controller="Home"asp-action="RouteDetailView" asp-route-id=@item.routeId>@item.RouteName</a></td>
                      </tr>
                 }
                 </tbody>

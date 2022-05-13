@@ -75,6 +75,10 @@ namespace Bus.Web.Controllers
             return RedirectToAction("index");
 
         }
+        public IActionResult IndexApi()
+        {
+            return View();
+        }
         
     }
 }
