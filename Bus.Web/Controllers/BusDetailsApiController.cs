@@ -1,4 +1,6 @@
-﻿using Bus.Services;
+﻿using Bus.Data;
+using Bus.Services;
+using Bus.Web.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,6 +18,22 @@ namespace Bus.Web.Controllers
         public object GetAllBusDetails () {
             var busdetails = _busdetailsService.GetAllBus();
             return Ok(busdetails);
+        }
+        [HttpGet("{id?}")]
+        public object GetAllBusDetails(int id)
+        {
+            var busdetailsByID = _busdetailsService.GetBusbyID(id);
+            return Ok(busdetailsByID);
+        }
+        [HttpPost]
+        public void create(BusDetailsViewModel model)
+        {
+            var bus = new BusDetails();
+            bus.Id = model.Id;
+            bus.BusName = model.BusName;
+            bus.BusNo = model.BusNo;
+            bus.RouteId = model.routeId;
+            _busdetailsService.AddBuss(bus);
         }
     }
 }

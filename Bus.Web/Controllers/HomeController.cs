@@ -51,7 +51,16 @@ namespace Bus.Web.Controllers
                                };
             return View(routeDetails);
         }
-
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Create(BusDetailsViewModel bus)
+        {
+            return View();
+        }
         public IActionResult Privacy()
         {
             return View();

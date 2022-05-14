@@ -3,6 +3,8 @@
 *@
 @{
 }
+<script src="http://code.jquery.com/jquery-plugins.js"></script>
+<script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
 <div><h1>API TABLE FOR BUS DETAILS</h1></div>
 <table id="apiTable">
     <thead>
@@ -15,29 +17,8 @@
     <tbody>
     </tbody>
 </table>
-<button onclick="ShowAllReservation()">GetAll</button>
-<br />
-<input type="text" id="Id" />
-<button id="GetButton" onclick="GetReservation()">Get Reservation</button>
-
-<table id="apiTables">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Type</th>
-        </tr>
-    </thead>
-    <tbody>
-    </tbody>
-</table>
 <script type="text/javascript">
-    //$(document).ready(function () {
-    //    ShowAllReservation();
-    //    GetReservation();
-
-    //});
+    ShowAllReservation()
     function ShowAllReservation() {
         var xhttp = new XMLHttpRequest();
         xhttp.open("GET", "https://localhost:44392/api/busdetailsapi", true);
@@ -48,48 +29,9 @@
             tbody.innerHTML = "";
             if (this.readyState == 4 && this.status == 200) {
                 JSON.parse(this.responseText).forEach(function (data) {
-                    tbody.innerHTML += "<tr><td>" + data.busNo. + "</td>" + "<td>" + data.busName + "</td>" + "<td>" + data.routId + "</td></tr>";
+                    tbody.innerHTML = "<tr><td>" + data.busNo. + "</td>" + "<td>" + data.busName + "</td>" + "<td>" + data.routId + "</td></tr>";
                 });
             }
         };
     }
-    //function GetReservation() {
-    //    var xhttp = new XMLHttpRequest();
-    //    xhttp.open("GET", "https://localhost:44396/api/item/" + document.getElementById("Id").value, true);
-    //    xhttp.send();
-
-    //    xhttp.onreadystatechange = function () {
-    //        if (this.readyState == 4 && this.status == 200) {
-    //            var response = JSON.parse(this.responseText);
-    //            var tbody = document.getElementById("apiTables").querySelector("tbody");
-    //            tbody.innerHTML = "<tr><td>" + response.id + "</td><td>" + response.name + "</td><td>" + response.cost + "</td><td>" + response.type + "</td></tr>";
-    //        }
-    //    };
-    //}
-</script>
-@*<script>
-    
-    $(document).ready(function(){
-        ShowAllBus();
-        debugger;
-        fuction ShowAllBus(){
-            $.ajax({
-                url:"https://localhost:44392/api/busdetailsapi/",
-                type:"get",
-                contentType:"applicaiton/Json",
-                success:function(data){
-                    $.each(data,function(i,item){
-                        var rows="<tr>"+
-                        "<td>"+item.busNo + "</td>"+
-                        "<td>"+item.busName + "</td>"+
-                        "<td>"+item.routeId + "</td>"+
-                        "<td>"+Edit + "</td>"+
-                        "<td>"+Delete + "</td>"+"</tr>";
-                        $('#busdetaiapi tbody').append(rows);
-
-                }
-
-            });
-        }
-    });
-</script>*@
+    </script>
