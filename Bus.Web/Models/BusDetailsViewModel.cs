@@ -6,5 +6,6 @@
         public string BusName { get; set; }
         public int BusNo { get; set; }
         public int routeId { get; set; }
+        public string routeName { get; set; }
     }
 }

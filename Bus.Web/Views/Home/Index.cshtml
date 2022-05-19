@@ -2,47 +2,41 @@
 @{
     ViewData["Title"] = "Home Page";
 }
-<div class="row">
-        <div class="table table-striped m-5">
-     <table>
+
+@*<div class="row">
+    <div class="table table-striped m-5">
+        <table>
             <thead>
-                <th>Bus No.</th>
-                <th>Bus Name </th>
-                <th>Route details</th>
+            <th>Bus No.</th>
+            <th>Bus Name </th>
+            <th>Route details</th>
             </th>
             <tbody>
-                    @foreach(var item in Model)
-                    {
-                          <tr>
-                         <td>@item.BusNo</td>
-                         <td>@item.BusName</td>
-                         <td><a asp-controller="Home"asp-action="RouteDetailView" asp-route-id=@item.routeId>@item.RouteName</a></td>
-                     </tr>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.BusNo</td>
+                        <td>@item.BusName</td>
+                        <td><a asp-controller="Home" asp-action="RouteDetailView" asp-route-id=@item.routeId>@item.RouteName</a></td>
+                    </tr>
                 }
-                </tbody>
+            </tbody>
         </table>
-        </div>
-        </div>
-        <div><h1>API TABLE FOR BUS DETAILS</h1></div>
-<a class="btn btn-info"asp-action="Create" asp-controller="Home"  >Create</a>
-<table id="apiTable">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Bus No.</th>
-            <th>Bus Name </th>
-            <th>Route details</th>
-        </tr>
-    </thead>
-    <tbody>
-    </tbody>
-</table>
-<button onclick="ShowAllReservation()">GetAll</button>
-<br />
-<input type="text" id="Id" />
-<button id="GetButton" onclick="GetReservation()">Get Reservation</button>
+    </div>
+</div>*@
 
-<table id="apiTablesById">
+<div><h1 style="color:#303133;">BUS DETAILS</h1></div>
+
+<a class="btn btn-info" asp-action="Create" asp-controller="Home">Create</a>
+<button onclick="ShowAllReservation()" class="btn btn-primary">GetAll</button>
+
+<div class="row" style="float:right">
+    <input type="text" id="Id" placeholder="Enter the Bus Id" />
+    <button class="btn btn-success" id="GetButton" onclick="GetReservation()">ViewDetails</button>
+</div>
+
+<br />
+<table class="table table-striped mt-5" id="apiTable">
     <thead>
         <tr>
             <th>ID</th>
@@ -54,6 +48,21 @@
     <tbody>
     </tbody>
 </table>
+
+<br />
+<table id="apiTablesById" class="table table-striped mt-5">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Bus No.</th>
+            <th>Bus Name </th>
+            <th>Route details</th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+
 <script type="text/javascript">
     //$(document).ready(function () {
     //    ShowAllReservation();

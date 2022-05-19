@@ -1,4 +1,5 @@
 ﻿using Bus.Data;
+using Bus.Repo;
 using Bus.Services;
 using Bus.Web.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -10,9 +11,11 @@ namespace Bus.Web.Controllers
     public class BusDetailsController : Controller
     {
         private readonly IBusdetailsService _busservics;
-        public BusDetailsController(IBusdetailsService busservices)
+        private readonly IRouteService _services;
+        public BusDetailsController(IBusdetailsService busservices, IRouteService services)
         {
             _busservics = busservices;
+            _services = services;
         }
         public IActionResult Index()
         {
@@ -31,10 +34,22 @@ namespace Bus.Web.Controllers
             }
             return View(busToView);
         }
+
         public IActionResult Create()
         {
+            var data = _services.GetAllRoute().ToList();
+            var routeToView = new List<BusDetailsViewModel>();
+            foreach (var items in data)
+            {
+                var entity = new BusDetailsViewModel();
+                entity.routeId = items.Id;
+                entity.routeName = items.RouteName;
+                routeToView.Add(entity);
+            }
+            ViewBag.busdetails = routeToView;
             return View();
         }
+
         [HttpPost]
         public IActionResult Create(BusDetailsViewModel model)
         {
