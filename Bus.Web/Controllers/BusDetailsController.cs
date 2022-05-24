@@ -1,4 +1,5 @@
 ﻿using Bus.Data;
+using Bus.Repo;
 using Bus.Services;
 using Bus.Web.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -15,6 +16,7 @@ namespace Bus.Web.Controllers
         {
             _services = services;
             _busservics = busservices;
+            _services = services;
         }
         public IActionResult Index()
         {
@@ -33,6 +35,7 @@ namespace Bus.Web.Controllers
             }
             return View(busToView);
         }
+
         public IActionResult Create()
         {
             var data = _services.GetAllRoute().ToList();
@@ -50,6 +53,7 @@ namespace Bus.Web.Controllers
             model.routeList = routeToView;
             return View(model);
         }
+
         [HttpPost]
         public IActionResult Create(BusDetailsViewModel model)
         {
