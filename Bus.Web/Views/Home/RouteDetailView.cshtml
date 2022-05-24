@@ -4,23 +4,24 @@
 }
 <div class="row">
         <div class="table table-striped m-5">
-     <table>
-            <thead>
-                <th>Route details</th>
+            <table>
+                <thead>
                 <th>Bus Name </th>
+                <th>Bus No. </th>
                 <th>Total Bus</th>
                 </thead>
-            <tbody>
-                @foreach(var i in Model)
-                {  <tr>
-                    <td>@i.RouteName</td>
-                    <td>@i.BusName</td>
-                    <td>@i.TotalBus</td>
-                   </tr>
-                }
-                
+                <tbody>
+                    @foreach (var i in Model)
+                    {
+                        <tr>
+                            <td>@i.BusName</td>
+                            <td>@i.BusNo</td>
 
+                        </tr>
+                    }
+
+                    @*<td>@TotalBus</td>*@
                 </tbody>
-        </table>
+            </table>
         </div>
         </div>

@@ -45,6 +45,7 @@ namespace Bus.Web.Controllers
                                select new RouteDetailsViewModel
                                {
                                    RouteName = r.RouteName,
+                                   BusNo = b.BusNo,
                                    BusName = b.BusName,
                                    TotalBus=r.BusDetails.Count()
                                    
