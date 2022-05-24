@@ -14,6 +14,7 @@ namespace Bus.Web.Controllers
         private readonly IRouteService _services;
         public BusDetailsController(IBusdetailsService busservices, IRouteService services)
         {
+            _services = services;
             _busservics = busservices;
             _services = services;
         }
@@ -45,9 +46,12 @@ namespace Bus.Web.Controllers
                 entity.routeId = items.Id;
                 entity.routeName = items.RouteName;
                 routeToView.Add(entity);
+
             }
-            ViewBag.busdetails = routeToView;
-            return View();
+            //ViewBag.busdetails = routeToView;
+            var model = new BusDetailsViewModel();
+            model.routeList = routeToView;
+            return View(model);
         }
 
         [HttpPost]
