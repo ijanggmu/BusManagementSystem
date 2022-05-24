@@ -46,6 +46,7 @@ namespace Bus.Web.Controllers
                                {
                                    RouteName = r.RouteName,
                                    BusName = b.BusName,
+                                   BusNo=b.BusNo,
                                    TotalBus=r.BusDetails.Count()
                                    
                                };

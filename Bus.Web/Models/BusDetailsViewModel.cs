@@ -1,4 +1,6 @@
-﻿namespace Bus.Web.Models
+﻿using System.Collections.Generic;
+
+namespace Bus.Web.Models
 {
     public class BusDetailsViewModel
     {
@@ -6,5 +8,7 @@
         public string BusName { get; set; }
         public int BusNo { get; set; }
         public int routeId { get; set; }
+        public string routeName { get; set; }
+        public List<BusDetailsViewModel> routeList{get; set;}
     }
 }
