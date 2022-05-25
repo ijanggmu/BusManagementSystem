@@ -3,13 +3,12 @@
     ViewData["Title"] = "Home Page";
 }
 
-@*<div class="row">
-    <div class="table table-striped m-5">
-        <table>
+<div class="row">
+        <table class="table table-striped">
             <thead>
-            <th>Bus No.</th>
-            <th>Bus Name </th>
-            <th>Route details</th>
+            <th>bus no.</th>
+            <th>bus name </th>
+            <th>route details</th>
             </th>
             <tbody>
                 @foreach (var item in Model)
@@ -17,13 +16,12 @@
                     <tr>
                         <td>@item.BusNo</td>
                         <td>@item.BusName</td>
-                        <td><a asp-controller="Home" asp-action="RouteDetailView" asp-route-id=@item.routeId>@item.RouteName</a></td>
+                        <td><a asp-controller="home" asp-action="routedetailview" asp-route-id=@item.routeId>@item.RouteName</a></td>
                     </tr>
                 }
             </tbody>
         </table>
     </div>
-</div>*@
 
 <div><h1 style="color:#303133;">BUS DETAILS</h1></div>
 
