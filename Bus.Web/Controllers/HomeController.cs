@@ -1,4 +1,6 @@
-﻿using Bus.Web.Models;
+﻿using Bus.Data;
+using Bus.Repo;
+using Bus.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -12,17 +14,53 @@ namespace Bus.Web.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private readonly ApplicationDbContext _db;
+        public HomeController(ApplicationDbContext db,ILogger<HomeController> logger)
         {
             _logger = logger;
+            _db = db;
         }
 
         public IActionResult Index()
         {
+            var userView = from b in _db.BusDetails
+                           join r in _db.Routes
+                           on b.RouteId equals r.Id
+                           select new BusRouteViewModel
+                           {
+                               routeId=r.Id,
+                               BusName = b.BusName,
+                               BusNo = b.BusNo,
+                               RouteName = r.RouteName,
+ 
+                           };
+            return View(userView);
+        }
+        public IActionResult RouteDetailView(int Id)
+        {
+            var routeDetails = from b in _db.BusDetails
+                               join r in _db.Routes
+                               on b.RouteId equals r.Id
+                               where b.RouteId ==Id
+                               select new RouteDetailsViewModel
+                               {
+                                   RouteName = r.RouteName,
+                                   BusNo = b.BusNo,
+                                   BusName = b.BusName,             
+                                   TotalBus=r.BusDetails.Count()                                
+                               };
+            return View(routeDetails);
+        }
+        [HttpGet]
+        public IActionResult Create()
+        {
             return View();
         }
-
+        [HttpPost]
+        public IActionResult Create(BusDetailsViewModel bus)
+        {
+            return View();
+        }
         public IActionResult Privacy()
         {
             return View();

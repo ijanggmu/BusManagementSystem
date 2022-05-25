@@ -1,4 +1,5 @@
 ﻿using Bus.Data;
+using Bus.Repo;
 using Bus.Services;
 using Bus.Web.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -12,29 +13,42 @@ namespace Bus.Web.Controllers
     public class RouteController : Controller
     {
         private readonly IRouteService _routeService;
-        public RouteController(IRouteService routeService)
+        private readonly ApplicationDbContext _db;
+        public RouteController(ApplicationDbContext db,IRouteService routeService)
         {
             _routeService = routeService;
+            _db = db;
         }
         public IActionResult Index()
         {
-            //create a list to store result
-            List<RouteViewModel> model = new List<RouteViewModel>();
+            var userView = (from b in _db.BusDetails
+                           join r in _db.Routes
+                           on b.RouteId equals r.Id
+                           select new RouteViewModel
+                           {
+                               Id = r.Id,
+                               RouteName = r.RouteName,
+                               NumberOfStops = r.NumberOfStops,
+                               BusCount = r.BusCount,
+                               PermitedBus = r.BusDetails.Count(),
+                               RemainingBusPermit= r.BusCount- r.BusDetails.Count()
 
-            _routeService.GetAllRoute().ToList().ForEach(
-                u =>
-                {
-                    _routeService.GetRouteById(u.Id);
-                    RouteViewModel rvm = new RouteViewModel
-                    {
-                        Id = u.Id,
-                        RouteName = u.RouteName,
-                        NumberOfStops = u.NumberOfStops,
-                        BusCount = u.BusCount,   
-                    };
-                    model.Add(rvm);
-                });
-            return View(model);
+
+                           }).Distinct();
+            //_routeService.GetAllRoute().ToList().ForEach(
+            //    u =>
+            //    {
+            //        _routeService.GetRouteById(u.Id);
+            //        RouteViewModel rvm = new RouteViewModel
+            //        {
+            //            Id = u.Id,
+            //            RouteName = u.RouteName,
+            //            NumberOfStops = u.NumberOfStops,
+            //            BusCount = u.BusCount,
+            //            PermitedBus=u.count()
+
+            //        };
+            return View(userView);
         }
 
         [HttpGet]
@@ -120,6 +134,6 @@ namespace Bus.Web.Controllers
 
             return RedirectToAction("Index");
         }
-
+    
     }
 }

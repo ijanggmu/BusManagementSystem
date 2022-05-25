@@ -20,5 +20,7 @@ namespace Bus.Web.Models
 
         [DisplayName("Bus Count")]
         public int BusCount { get; set; }
+        public int PermitedBus { get; set; }
+        public int RemainingBusPermit { get; set; }
     }
 }

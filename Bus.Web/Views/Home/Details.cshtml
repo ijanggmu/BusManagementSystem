@@ -1,0 +1,25 @@
+﻿@model IEnumerable<BusDetailsViewModel>
+@{
+    ViewData["Title"] = "Home Page";
+}
+<div class="row">
+        <div class="table table-striped m-5">
+     <table>
+            <thead>
+                <th>TotalBus</th>
+                <th>Route Details </th>
+               
+            </th>
+            <tbody>
+                    @foreach(var item in Model)
+                    {
+                          <tr>
+                         <td>@item.</td>
+                         <td>@item.BusName</td>
+                       
+                     </tr>
+                }
+                </tbody>
+        </table>
+        </div>
+        </div>
