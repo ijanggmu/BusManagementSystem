@@ -17,8 +17,11 @@
                 Number Of Stops
             </th>
             <th>
-                Number Of Bus
+                Bus Permit Limit
             </th>
+            <th>Permited Bus</th>
+            <th>Remaing Bus Permit</th>
+            <th> </th>
 
         </tr>
     </thead>
@@ -37,6 +40,13 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.BusCount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PermitedBus)
+            </td>
+            
+            <td>
+                @Html.DisplayFor(modelItem => item.RemainingBusPermit)
             </td>
 
             <td>
