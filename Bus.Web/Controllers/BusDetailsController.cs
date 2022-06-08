@@ -12,11 +12,12 @@ namespace Bus.Web.Controllers
     {
         private readonly IBusdetailsService _busservics;
         private readonly IRouteService _services;
-        public BusDetailsController(IBusdetailsService busservices, IRouteService services)
+        private readonly ApplicationDbContext _db;
+        public BusDetailsController(IBusdetailsService busservices, IRouteService services, ApplicationDbContext db)
         {
             _services = services;
             _busservics = busservices;
-            _services = services;
+            _db = db;
         }
         public IActionResult Index()
         {
@@ -98,6 +99,31 @@ namespace Bus.Web.Controllers
         {
             return View();
         }
-        
+
+        public IActionResult Export()
+        {
+            List<object> busdetails = (from b in _db.BusDetails.ToList()
+                                       select new
+                                       {
+                                           //b.BusNo,
+                                           b.BusName,
+                                           //b.RouteId
+                                       }).ToList<object>();
+
+            busdetails.Insert(0, new string[] { "BusName" });
+
+            System.Text.StringBuilder sb = new System.Text.StringBuilder();
+
+            for (int i = 0; i < busdetails.Count; i++)
+            {
+                string[] b = (string[])busdetails[i];
+                for (int j = 0; j < b.Length; j++)
+                {
+                    sb.Append(b[j] + ',');
+                }
+                sb.Append("\r\n");
+            }
+            return File(System.Text.Encoding.UTF8.GetBytes(sb.ToString()), "text/csv", "busdetails.csv");
+        }
     }
 }

@@ -15,16 +15,19 @@ namespace Bus.Web.Controllers
         {
             _busdetailsService = busdetailsService;
         }
+
         public object GetAllBusDetails () {
             var busdetails = _busdetailsService.GetAllBus();
             return Ok(busdetails);
         }
+
         [HttpGet("{id?}")]
         public object GetAllBusDetails(int id)
         {
             var busdetailsByID = _busdetailsService.GetBusbyID(id);
             return Ok(busdetailsByID);
         }
+
         [HttpPost]
         public void create(BusDetailsViewModel model)
         {
