@@ -5,7 +5,7 @@
         <a class="btn btn-outline-success" asp-action="Create" asp-controller="Route">Create New Route</a>
     </p>
     <div class="container table-responsive">
-        <table class="table table-hover">
+        <table class="table">
             <thead>
                 <tr>
                     <th>
@@ -54,10 +54,9 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.RemainingBusPermit)
                     </td>
-                    <td><a href="@item.RouteMapLink">
-                            Map                    
+                    <td><a href="@Html.DisplayFor(modelItem => item.RouteMapLink)">
+                            <img src="~/images/direction.png" style="height:35px;"/>                   
                         </a>
-                    
                     </td>                
                     <td>
                         <a asp-controller="Route" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |

@@ -35,7 +35,7 @@ namespace Bus.Web.Controllers
                                BusCount = r.BusCount,
                                PermitedBus = r.BusDetails.Count(),
                                RemainingBusPermit= r.BusCount- r.BusDetails.Count(),
-                               RouteMapLink=r.RouteMapLink,
+                               RouteMapLink= r.RouteMapLink,
                            }).Distinct();
           
             return View(userView);
