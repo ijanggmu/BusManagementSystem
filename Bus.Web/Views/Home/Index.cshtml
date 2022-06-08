@@ -3,38 +3,34 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="row">
-        <table class="table table-striped mt-5 mb-5">
-            <thead>
-            <th>bus no.</th>
-            <th>bus name </th>
-            <th>route details</th>
-            </th>
-            <tbody>
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td>@item.BusNo</td>
-                        <td>@item.BusName</td>
-                        <td><a asp-controller="home" asp-action="routedetailview" asp-route-id=@item.routeId>@item.RouteName</a></td>
-                    </tr>
-                }
-            </tbody>
-        </table>
+<div class="row table-responsive">
+    <table class="table table-hover mt-5 mb-5 text-center">
+        <thead>
+            <tr>
+                <th>Bus No.</th>
+                <th>Bus Name </th>
+                <th>Route </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.BusNo</td>
+                    <td>@item.BusName</td>
+                    <td><a asp-controller="home" asp-action="routedetailview" asp-route-id=@item.routeId>@item.RouteName</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
 </div>
 
 <div><h1 style="color:#303133;">BUS DETAILS</h1></div>
 
-<a class="btn btn-info" asp-action="Create" asp-controller="Home">Create</a>
-<button onclick="ShowAllReservation()" class="btn btn-primary">GetAll</button>
+<a class="btn btn-light" asp-action="Create" asp-controller="Home">Create</a>
+<button onclick="ShowAllReservation()" class="btn btn-light">GetAll</button>
 
-<div class="row" style="float:right">
-    <input type="text" id="Id" placeholder="Enter the Bus Id" />
-    <button class="btn btn-success" id="GetButton" onclick="GetReservation()">ViewDetails</button>
-</div>
-
-<br />
-<table class="table table-striped mt-5" id="apiTable">
+<table class="table table-striped mt-2" id="apiTable">
     <thead>
         <tr>
             <th>ID</th>
@@ -48,7 +44,20 @@
 </table>
 
 <br />
-<table id="apiTablesById" class="table table-striped mt-5">
+
+<div class="ViewDetailButton" style="margin:70px 0 30px 0;float:right;">
+    <input type="text" id="Id" placeholder="Enter the Bus Id" 
+           style="
+    
+                height:38px;
+                border:none;
+                border-bottom:1px solid #aaa;
+                text-align:center;
+                margin:-1px" />
+    <button class="btn btn-success" id="GetButton" onclick="GetReservation()">ViewDetails</button>
+</div>
+
+<table id="apiTablesById" class="table table-striped mb-5">
     <thead>
         <tr>
             <th>ID</th>
@@ -77,7 +86,10 @@
             tbody.innerHTML = "";
             if (this.readyState == 4 && this.status == 200) {
                 JSON.parse(this.responseText).forEach(function (data) {
-                    tbody.innerHTML += "<tr><td>" + data.id + "</td>" + "<td>" + data.busNo + "</td>" + "<td>" + data.busName + "</td>" + "<td>" + data.routeId + "</td></tr>";
+                    tbody.innerHTML += "<tr><td>" + data.id + "</td>" +
+                        "<td>" + data.busNo + "</td>" +
+                        "<td>" + data.busName + "</td>" +
+                        "<td>" + data.routeId + "</td></tr>";
                 });
             }
         };

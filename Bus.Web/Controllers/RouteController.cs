@@ -2,6 +2,7 @@
 using Bus.Repo;
 using Bus.Services;
 using Bus.Web.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -19,6 +20,7 @@ namespace Bus.Web.Controllers
             _routeService = routeService;
             _db = db;
         }
+        [Authorize]
         public IActionResult Index()
         {
             var userView = (from b in _db.BusDetails

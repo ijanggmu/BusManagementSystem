@@ -33,6 +33,12 @@ namespace Bus.Web
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddTransient<IRouteService, RouteService>();
             services.AddTransient<IBusdetailsService, BusDetailsService>();
+            services.AddAuthentication("CookieAuth")
+                .AddCookie("CookieAuth", config =>
+                {
+                    config.Cookie.Name = "Gradmas.Cookie";
+                    config.LoginPath = "/BusDetails/Authenticate";
+                });
             services.AddControllersWithViews();
          
         }
@@ -51,10 +57,15 @@ namespace Bus.Web
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
+            
             app.UseStaticFiles();
 
             app.UseRouting();
 
+            //who are you?
+            app.UseAuthentication();
+
+            //are you allowed?
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

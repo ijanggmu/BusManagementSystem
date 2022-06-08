@@ -9,16 +9,17 @@
         <div class="col-sm-3"> 
 <a class="btn btn-info m-3 " asp-action="Create">Add Bus</a></div>
     </div>
-    <div class="row m-3">
-      
-     <table class="table table-striped ">
+    <div class="row m- table-responsive">
+     <table class="table table-hover">
             <thead>
-                <th>Bus No.</th>
-                <th>Bus Name </th>
-                <th>Route details</th>
-                <th></th>
-                <th></th>
-            </th>
+                <tr>
+                    <th>Bus No.</th>
+                    <th>Bus Name </th>
+                    <th>Route Id</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
             <tbody>
                     @foreach(var item in Model)
                     {
@@ -26,8 +27,8 @@
                          <td>@item.BusNo</td>
                          <td>@item.BusName</td>
                          <td>@item.routeId</td>
-                         <td><a class="btn btn-sm btn-warning" asp-controller="BusDetails" asp-route-id="@item.Id " asp-action="Edit">Edit</a></td>
-                         <td><a class="btn btn-sm btn-danger" asp-controller="BusDetails" asp-route-id="@item.Id " asp-action="Delete">Delete</a></td>
+                         <td><a class="btn btn-sm btn-light" asp-controller="BusDetails" asp-route-id="@item.Id " asp-action="Edit">Edit</a>
+                          <a class="btn btn-sm btn-danger" asp-controller="BusDetails" asp-route-id="@item.Id " asp-action="Delete">Delete</a></td>
                      </tr>
                 }
                 </tbody>
@@ -35,8 +36,9 @@
         </div>
 
 </div>
-<div>
-    <table>
 
-    </table>
+<div class="col-md-6">
+    <form asp-controller="BusDetails" asp-action="Export" method="post">
+        <input type="submit" value="ExportToCSV" class="btn btn-outline-success" style="margin-top:5px;" />
+    </form>
 </div>
