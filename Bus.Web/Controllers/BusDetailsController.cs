@@ -2,9 +2,13 @@
 using Bus.Repo;
 using Bus.Services;
 using Bus.Web.Models;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
+using System.Text;
 
 namespace Bus.Web.Controllers
 {
@@ -19,6 +23,7 @@ namespace Bus.Web.Controllers
             _busservics = busservices;
             _db = db;
         }
+        [Authorize]
         public IActionResult Index()
         {
             var data = _busservics.GetAllBus().ToList();
@@ -35,6 +40,30 @@ namespace Bus.Web.Controllers
                
             }
             return View(busToView);
+        }
+        public IActionResult Authenticate()
+        {
+            var grandmaClaims = new List<Claim>()
+            {
+                new Claim(ClaimTypes.Name,"Ejan"),
+                new Claim(ClaimTypes.Email,"sthaejan00@gmail.com"),
+                new Claim("grandma.Says","Ejan"),
+            };
+
+            var licenseClaims = new List<Claim>()
+            {
+                new Claim(ClaimTypes.Name,"Ejan Shrestha"),
+                new Claim("Driving License","A+"),
+            };
+            var grandmaIdentity = new ClaimsIdentity(grandmaClaims, "Grandma Identity");
+            var licenseIdentity = new ClaimsIdentity(licenseClaims, "Government");
+            var userPrinciple = new ClaimsPrincipal(new[] { grandmaIdentity , licenseIdentity });
+            HttpContext.SignInAsync(userPrinciple);
+            return RedirectToAction("Create");
+
+
+
+
         }
 
         public IActionResult Create()
@@ -102,28 +131,22 @@ namespace Bus.Web.Controllers
 
         public IActionResult Export()
         {
-            List<object> busdetails = (from b in _db.BusDetails.ToList()
-                                       select new
-                                       {
-                                           //b.BusNo,
-                                           b.BusName,
-                                           //b.RouteId
-                                       }).ToList<object>();
+            List<BusDetails> studentdetails = (from s in _db.BusDetails
+                                                    select new BusDetails
+                                                    {
+                                                        BusName = s.BusName,
+                                                        BusNo = s.BusNo,
+                                                        RouteId = s.RouteId,                                              
+                                                 }).ToList();
 
-            busdetails.Insert(0, new string[] { "BusName" });
+            var sb = new StringBuilder();
+            sb.AppendLine("BusName,BusNo,RouteId");
 
-            System.Text.StringBuilder sb = new System.Text.StringBuilder();
-
-            for (int i = 0; i < busdetails.Count; i++)
+            foreach (var item in studentdetails)
             {
-                string[] b = (string[])busdetails[i];
-                for (int j = 0; j < b.Length; j++)
-                {
-                    sb.Append(b[j] + ',');
-                }
-                sb.Append("\r\n");
+                sb.AppendLine($"{item.BusName},{item.BusNo},{item.RouteId}");
             }
-            return File(System.Text.Encoding.UTF8.GetBytes(sb.ToString()), "text/csv", "busdetails.csv");
+            return File(Encoding.UTF8.GetBytes(sb.ToString()), "text/csv", "BusDetails.csv");
         }
     }
 }

@@ -36,6 +36,9 @@
         </div>
 
 </div>
-<form asp-action="Export" asp-controller="BusDetails" method="post">
-    <input type="submit" value="ExportCSV" />
-</form>
+
+<div class="col-md-6">
+    <form asp-controller="BusDetails" asp-action="Export" method="post">
+        <input type="submit" value="ExportToCSV" class="btn btn-outline-success" style="margin-top:5px;" />
+    </form>
+</div>
