@@ -30,6 +30,18 @@
 <a class="btn btn-light" asp-action="Create" asp-controller="Home">Create</a>
 <button onclick="ShowAllReservation()" class="btn btn-light">GetAll</button>
 
+<div class="ViewDetailButton" style="@*margin:70px 0 30px 0*@;float:right;">
+    <input type="text" id="Id" placeholder="Enter the Bus Id"
+           style="
+
+                height:38px;
+                border:none;
+                border-bottom:1px solid #aaa;
+                text-align:center;
+                margin:-1px" />
+    <button class="btn btn-success" id="GetButton" onclick="GetReservation()">ViewDetails</button>
+</div>
+
 <table class="table table-striped mt-2" id="apiTable">
     <thead>
         <tr>
@@ -44,18 +56,6 @@
 </table>
 
 <br />
-
-<div class="ViewDetailButton" style="margin:70px 0 30px 0;float:right;">
-    <input type="text" id="Id" placeholder="Enter the Bus Id" 
-           style="
-    
-                height:38px;
-                border:none;
-                border-bottom:1px solid #aaa;
-                text-align:center;
-                margin:-1px" />
-    <button class="btn btn-success" id="GetButton" onclick="GetReservation()">ViewDetails</button>
-</div>
 
 <table id="apiTablesById" class="table table-striped mb-5">
     <thead>
