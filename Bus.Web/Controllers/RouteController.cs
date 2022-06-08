@@ -23,33 +23,21 @@ namespace Bus.Web.Controllers
         [Authorize]
         public IActionResult Index()
         {
-            var userView = (from b in _db.BusDetails
-                           join r in _db.Routes
-                           on b.RouteId equals r.Id
-                           select new RouteViewModel
+            var userView = (from r in _db.Routes
+                           join b in _db.BusDetails
+                           on r.Id equals b.RouteId into n
+                            from m in n.DefaultIfEmpty()
+                            select new RouteViewModel
                            {
                                Id = r.Id,
                                RouteName = r.RouteName,
                                NumberOfStops = r.NumberOfStops,
                                BusCount = r.BusCount,
                                PermitedBus = r.BusDetails.Count(),
-                               RemainingBusPermit= r.BusCount- r.BusDetails.Count()
-
-
+                               RemainingBusPermit= r.BusCount- r.BusDetails.Count(),
+                               RouteMapLink=r.RouteMapLink,
                            }).Distinct();
-            //_routeService.GetAllRoute().ToList().ForEach(
-            //    u =>
-            //    {
-            //        _routeService.GetRouteById(u.Id);
-            //        RouteViewModel rvm = new RouteViewModel
-            //        {
-            //            Id = u.Id,
-            //            RouteName = u.RouteName,
-            //            NumberOfStops = u.NumberOfStops,
-            //            BusCount = u.BusCount,
-            //            PermitedBus=u.count()
-
-            //        };
+          
             return View(userView);
         }
 
@@ -67,6 +55,7 @@ namespace Bus.Web.Controllers
                 RouteName = rvm.RouteName,
                 NumberOfStops = rvm.NumberOfStops,
                 BusCount = rvm.BusCount,
+                RouteMapLink = rvm.RouteMapLink,
             };
 
             //passing Category obj into the InserUser() function
