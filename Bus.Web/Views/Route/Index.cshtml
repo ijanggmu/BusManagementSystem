@@ -59,9 +59,15 @@
                         </a>
                     </td>                
                     <td>
-                        <a asp-controller="Route" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                        <a asp-controller="Route" asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                        <a asp-controller="Route" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                        <a asp-controller="Route" asp-action="Edit" asp-route-id="@item.Id"
+                           style="background-color:white;color:#303133;border:none ;border-radius:8px"
+                           >Edit</a> |
+                        <a asp-controller="Route" asp-action="Details" asp-route-id="@item.Id"
+                            style="background-color:white;color:#303133;border:none;border-radius:8px;"
+                           >Details</a> |
+                        <a asp-controller="Route" asp-action="Delete" asp-route-id="@item.Id"
+                            style="background-color:white;color:#303133;border:none ;border-radius:8px;"
+                           >Delete</a>
                     </td>
                 </tr>
                 }

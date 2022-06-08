@@ -30,16 +30,15 @@
 <a class="btn btn-light" asp-action="Create" asp-controller="Home">Create</a>
 <button onclick="ShowAllReservation()" class="btn btn-light">GetAll</button>
 
-<div class="ViewDetailButton" style="float:right;">
+<div class="ViewDetailButton" style="margin-bottom:30px;float:right;">
     <input type="text" id="Id" placeholder="Enter the Bus Id"
            style="
-
                 height:38px;
                 border:none;
                 border-bottom:1px solid #aaa;
                 text-align:center;
                 margin:-1px" />
-    <button class="btn btn-success" id="GetButton" onclick="GetReservation()">ViewDetails</button>
+    <button class="btn btn-outline-success" id="GetButton" onclick="GetReservation()">ViewDetails</button>
 </div>
 
 <table class="table table-striped mt-2" id="apiTable">
