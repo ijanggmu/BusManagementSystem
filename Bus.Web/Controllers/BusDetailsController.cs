@@ -2,9 +2,12 @@
 using Bus.Repo;
 using Bus.Services;
 using Bus.Web.Models;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 
 namespace Bus.Web.Controllers
 {
@@ -18,6 +21,7 @@ namespace Bus.Web.Controllers
             _busservics = busservices;
             _services = services;
         }
+        [Authorize]
         public IActionResult Index()
         {
             var data = _busservics.GetAllBus().ToList();
@@ -34,6 +38,30 @@ namespace Bus.Web.Controllers
                
             }
             return View(busToView);
+        }
+        public IActionResult Authenticate()
+        {
+            var grandmaClaims = new List<Claim>()
+            {
+                new Claim(ClaimTypes.Name,"Ejan"),
+                new Claim(ClaimTypes.Email,"sthaejan00@gmail.com"),
+                new Claim("grandma.Says","Ejan"),
+            };
+
+            var licenseClaims = new List<Claim>()
+            {
+                new Claim(ClaimTypes.Name,"Ejan Shrestha"),
+                new Claim("Driving License","A+"),
+            };
+            var grandmaIdentity = new ClaimsIdentity(grandmaClaims, "Grandma Identity");
+            var licenseIdentity = new ClaimsIdentity(licenseClaims, "Government");
+            var userPrinciple = new ClaimsPrincipal(new[] { grandmaIdentity , licenseIdentity });
+            HttpContext.SignInAsync(userPrinciple);
+            return RedirectToAction("Create");
+
+
+
+
         }
 
         public IActionResult Create()
