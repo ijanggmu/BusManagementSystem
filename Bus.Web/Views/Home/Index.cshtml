@@ -54,7 +54,11 @@
     <tbody>
     </tbody>
 </table>
+<form id="formedit">
+</form>
+
 <script type="text/javascript">
+    ejan();
     //$(document).ready(function () {
     //    ShowAllReservation();
     //    GetReservation();
@@ -70,7 +74,13 @@
             tbody.innerHTML = "";
             if (this.readyState == 4 && this.status == 200) {
                 JSON.parse(this.responseText).forEach(function (data) {
-                    tbody.innerHTML += "<tr><td>" + data.id + "</td>" + "<td>" + data.busNo + "</td>" + "<td>" + data.busName + "</td>" + "<td>" + data.routeId + "</td></tr>";
+                    tbody.innerHTML += "<tr><td>" + data.id +
+                    "</td>" + "<td>" + data.busNo + "</td>"
+                    + "<td>" + data.busName + "</td>" + 
+                    "<td>" + data.routeId + "</td>"+
+                    "<td>"+"Edit"+"<td>"+
+                    "<td>"+"Delete"+
+                    "</td></tr>";
                 });
             }
         };
@@ -85,6 +95,20 @@
                 var response = JSON.parse(this.responseText);
                 var tbody = document.getElementById("apiTablesById").querySelector("tbody");
                 tbody.innerHTML = "<tr><td>" + response.id + "</td><td>" + response.busNo + "</td><td>" + response.busName + "</td><td>" + response.routeId + "</td></tr>";
+            }
+        };
+    }
+    function ejan() {
+        var xhttp = new XMLHttpRequest();
+        xhttp.open("GET", "https://localhost:44392/api/busdetailsapi/5", true);
+        xhttp.send();
+
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                var response = JSON.parse(this.responseText);
+                var formbody=document.getElementById("formedit");
+                formbody.innerHTML="<label>Bus No.</label>"+" "+"<input value="+response.busNo+">"+"<label>Bus Name</label>"+" "+"<input value="+response.busName+">";
+
             }
         };
     }

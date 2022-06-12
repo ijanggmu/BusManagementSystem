@@ -15,7 +15,7 @@ namespace Bus.Web.Controllers
         {
             _busdetailsService = busdetailsService;
         }
-        public object GetAllBusDetails () {
+        public object GetAllBusDetails() {
             var busdetails = _busdetailsService.GetAllBus();
             return Ok(busdetails);
         }
@@ -34,6 +34,18 @@ namespace Bus.Web.Controllers
             bus.BusNo = model.BusNo;
             bus.RouteId = model.routeId;
             _busdetailsService.AddBuss(bus);
+        }
+        [HttpGet("edit/{id?}") ]
+        public object edit(int id)
+        {
+            var edit = new BusDetailsViewModel();
+            BusDetails details = _busdetailsService.GetBusbyID(id);
+            edit.Id = details.Id;
+            edit.BusName = details.BusName;
+            edit.BusNo = details.BusNo;
+            edit.routeId = details.RouteId;
+            return Ok(edit);
+
         }
     }
 }
