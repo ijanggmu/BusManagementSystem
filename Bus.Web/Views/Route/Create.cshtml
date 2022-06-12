@@ -14,7 +14,7 @@
                         <label asp-for="RouteName"></label>
                     </div>
                     <div class="col-8">
-                        <input asp-for="RouteName" class="form-control"  required/>
+                        <input asp-for="RouteName" class="form-control" required />
                         <span asp-validation-for="RouteName" class="text-danger"></span>
                     </div>
 
@@ -36,6 +36,16 @@
                     <div class="col-8">
                         <input asp-for="BusCount" class="form-control" />
                         <span asp-validation-for="BusCount" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="RouteMapLink"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="RouteMapLink" class="form-control" />
+                        <span asp-validation-for="RouteMapLink" class="text-danger"></span>
                     </div>
                 </div>
 

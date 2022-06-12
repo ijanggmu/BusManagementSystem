@@ -16,9 +16,11 @@
             <label asp-for="BusName">Bus Name</label>
             <input type="text" class="form-control" asp-for="BusName" />
         </div>
+        <br />
         <div>
-            <label asp-for="routeId">Route Id</label>
-            <input type="text" class="form-control" asp-for="routeId" />
+            <label asp-for="routeId">Route</label>
+            <select asp-for="routeId" 
+            asp-items="@(new SelectList(Model.routeList,"routeId","routeName"))"></select>  
         </div>
         <div>
             <button class="btn btn-success mt-2" type="submit" value="submit">ADD</button>

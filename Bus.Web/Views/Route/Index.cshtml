@@ -2,49 +2,75 @@
 
 <br />
     <p>
-        <a class="btn btn-info" asp-action="Create" asp-controller="Route">Create New Route</a>
+        <a class="btn btn-outline-success" asp-action="Create" asp-controller="Route">Create New Route</a>
     </p>
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>
-                Route ID
-            </th>
-            <th>
-                Route Name
-            </th>
-            <th>
-                Number Of Stops
-            </th>
-            <th>
-                Number Of Bus
-            </th>
+    <div class="container table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Route ID
+                    </th>
+                    <th>
+                        Route Name
+                    </th>
+                    <th>
+                        Number Of Stops
+                    </th>
+                    <th>
+                        Bus Permit Limit
+                    </th>
+                    <th>
+                        Permited Bus
+                    </th>
+                    <th>
+                        Remaing Bus Permit
+                    </th>
+                    <th>
+                        Route Map
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RouteName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NumberOfStops)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BusCount)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PermitedBus)
+                    </td>
 
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RouteName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NumberOfStops)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.BusCount)
-            </td>
-
-            <td>
-                <a asp-controller="Route" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-controller="Route" asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-controller="Route" asp-action="Delete" asp-route-id="@item.Id">Delete</a> 
-            </td>
-        </tr>
-        }
-    </tbody>
-</table>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RemainingBusPermit)
+                    </td>
+                    <td><a href="@Html.DisplayFor(modelItem => item.RouteMapLink)">
+                            <img src="~/images/direction.png" style="height:35px;"/>                   
+                        </a>
+                    </td>                
+                    <td>
+                        <a asp-controller="Route" asp-action="Edit" asp-route-id="@item.Id"
+                           style="background-color:white;color:#303133;border:none ;border-radius:8px"
+                           >Edit</a> |
+                        <a asp-controller="Route" asp-action="Details" asp-route-id="@item.Id"
+                            style="background-color:white;color:#303133;border:none;border-radius:8px;"
+                           >Details</a> |
+                        <a asp-controller="Route" asp-action="Delete" asp-route-id="@item.Id"
+                            style="background-color:white;color:#303133;border:none ;border-radius:8px;"
+                           >Delete</a>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
