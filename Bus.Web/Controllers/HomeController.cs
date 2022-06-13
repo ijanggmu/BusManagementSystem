@@ -32,7 +32,6 @@ namespace Bus.Web.Controllers
                                BusName = b.BusName,
                                BusNo = b.BusNo,
                                RouteName = r.RouteName,
- 
                            };
             return View(userView);
         }
@@ -45,10 +44,9 @@ namespace Bus.Web.Controllers
                                select new RouteDetailsViewModel
                                {
                                    RouteName = r.RouteName,
-                                   BusName = b.BusName,
-                                   BusNo=b.BusNo,
-                                   TotalBus=r.BusDetails.Count()
-                                   
+                                   BusNo = b.BusNo,
+                                   BusName = b.BusName,             
+                                   TotalBus=r.BusDetails.Count()                                
                                };
             return View(routeDetails);
         }
@@ -76,5 +74,6 @@ namespace Bus.Web.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+ 
     }
 }

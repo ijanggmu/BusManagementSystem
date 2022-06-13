@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Bus.Web.Models.BusDetailsViewModel>
+
+<br />
+<h1 style="color:#303133">Import/Export Your Database file into CSV File Format</h1>
+<br />
+
+<h4>Customers</h4>
+<hr />
+<div id="Grid">
+    <table>
+        <tr>
+            <th>Bus No</th>
+            <th>Bus Name</th>
+            <th>RouteId</th>
+        </tr>
+        @foreach(BusDetailsViewModel busdetail in Model)
+        {
+            <tr>
+                <td>@busdetail.BusNo</td>
+                <td>@busdetail.BusName</td>
+                <td>@busdetail.routeId</td>
+            </tr>
+        }
+    </table>
+</div>
+<br />
+<br />
+<form asp-action="Export" asp-controller="ImportExport" method="post">
+    <input type="submit" value="Export" />
+</form>

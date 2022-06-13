@@ -34,23 +34,10 @@ namespace Bus.Web.Controllers
                                NumberOfStops = r.NumberOfStops,
                                BusCount = r.BusCount,
                                PermitedBus = r.BusDetails.Count(),
-                               RemainingBusPermit= r.BusCount- r.BusDetails.Count()
-
-
+                               RemainingBusPermit= r.BusCount- r.BusDetails.Count(),
+                               RouteMapLink= r.RouteMapLink,
                            }).Distinct();
-            //_routeService.GetAllRoute().ToList().ForEach(
-            //    u =>
-            //    {
-            //        _routeService.GetRouteById(u.Id);
-            //        RouteViewModel rvm = new RouteViewModel
-            //        {
-            //            Id = u.Id,
-            //            RouteName = u.RouteName,
-            //            NumberOfStops = u.NumberOfStops,
-            //            BusCount = u.BusCount,
-            //            PermitedBus=u.count()
-
-            //        };
+          
             return View(userView);
         }
 
@@ -68,6 +55,7 @@ namespace Bus.Web.Controllers
                 RouteName = rvm.RouteName,
                 NumberOfStops = rvm.NumberOfStops,
                 BusCount = rvm.BusCount,
+                RouteMapLink = rvm.RouteMapLink,
             };
 
             //passing Category obj into the InserUser() function
