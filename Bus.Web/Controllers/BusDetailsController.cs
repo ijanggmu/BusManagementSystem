@@ -16,12 +16,10 @@ namespace Bus.Web.Controllers
     {
         private readonly IBusdetailsService _busservics;
         private readonly IRouteService _services;
-        private readonly ApplicationDbContext _db;
-        public BusDetailsController(IBusdetailsService busservices, IRouteService services, ApplicationDbContext db)
+        public BusDetailsController(IBusdetailsService busservices, IRouteService services)
         {
             _services = services;
             _busservics = busservices;
-            _db = db;
         }
         [Authorize]
         public IActionResult Index()
@@ -131,16 +129,10 @@ namespace Bus.Web.Controllers
 
         public IActionResult Export()
         {
-            List<BusDetails> studentdetails = (from s in _db.BusDetails
-                                                    select new BusDetails
-                                                    {
-                                                        BusName = s.BusName,
-                                                        BusNo = s.BusNo,
-                                                        RouteId = s.RouteId,                                              
-                                                 }).ToList();
+            List<BusDetails> studentdetails = _busservics.GetAllBus().ToList();
 
             var sb = new StringBuilder();
-            sb.AppendLine("BusName,BusNo,RouteId");
+            sb.AppendLine("Bus Name,Bus No,Route Id");
 
             foreach (var item in studentdetails)
             {
