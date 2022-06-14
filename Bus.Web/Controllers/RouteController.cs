@@ -26,7 +26,7 @@ namespace Bus.Web.Controllers
             var userView = (from r in _db.Routes
                            join b in _db.BusDetails
                            on r.Id equals b.RouteId into n
-                            from m in n.DefaultIfEmpty()
+                           from m in n.DefaultIfEmpty()
                             select new RouteViewModel
                            {
                                Id = r.Id,
