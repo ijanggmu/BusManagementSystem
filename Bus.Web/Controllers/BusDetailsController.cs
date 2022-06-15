@@ -77,6 +77,7 @@ namespace Bus.Web.Controllers
 
             }
             //ViewBag.busdetails = routeToView;
+
             var model = new BusDetailsViewModel();
             model.routeList = routeToView;
             return View(model);

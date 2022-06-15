@@ -10,7 +10,7 @@ namespace Bus.Repo
     public class Repository<T> : IRepository<T> where T : BaseEntity
     {
         private readonly ApplicationDbContext _db;
-        private DbSet<T> entities;
+        private readonly DbSet<T> entities;
         public Repository(ApplicationDbContext db)
         {
             _db = db;

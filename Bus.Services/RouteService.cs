@@ -7,7 +7,7 @@ namespace Bus.Services
 {
     public class RouteService : IRouteService
     {
-        private IRepository<Route> _routeRepository;
+        private readonly IRepository<Route> _routeRepository;
         public RouteService(IRepository<Route> routeRepository)
         {
             _routeRepository = routeRepository;

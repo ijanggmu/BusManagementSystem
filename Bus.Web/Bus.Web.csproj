@@ -22,4 +22,8 @@
     <ProjectReference Include="..\Bus.Services\Bus.Services.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Views\Home\Shared\" />
+  </ItemGroup>
+
 </Project>
