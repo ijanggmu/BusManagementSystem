@@ -25,10 +25,16 @@
     </table>
 </div>
 
-<div><h1 style="color:#303133;">BUS DETAILS</h1></div>
+<div><h1 style="color:#303133;">DETAILS FROM API</h1></div>
 
 <a class="btn btn-light" asp-action="Create" asp-controller="Home">Create</a>
-<button onclick="ShowAllReservation()" class="btn btn-light">GetAll</button>
+<button class="btn btn-light">GetAll</button>
+
+<div>
+    <partial name="_IndexFromAPI"/>
+</div>
+
+
 
 <div class="ViewDetailButton" style="margin-bottom:30px;float:right;">
     <input type="text" id="Id" placeholder="Enter the Bus Id"
@@ -41,7 +47,7 @@
     <button class="btn btn-outline-success" id="GetButton" onclick="GetReservation()">ViewDetails</button>
 </div>
 
-<table class="table table-striped mt-2" id="apiTable">
+@*<table class="table table-striped mt-2" id="apiTable">
     <thead>
         <tr>
             <th>ID</th>
@@ -52,8 +58,7 @@
     </thead>
     <tbody>
     </tbody>
-</table>
-
+</table>*@
 <br />
 
 <table id="apiTablesById" class="table table-striped mb-5">
@@ -70,11 +75,7 @@
 </table>
 
 <script type="text/javascript">
-    //$(document).ready(function () {
-    //    ShowAllReservation();
-    //    GetReservation();
-
-    //});
+    ShowAllReservation();
     function ShowAllReservation() {
         var xhttp = new XMLHttpRequest();
         xhttp.open("GET", "https://localhost:44392/api/busdetailsapi", true);

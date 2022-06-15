@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace Bus.Web.Controllers
@@ -39,6 +40,31 @@ namespace Bus.Web.Controllers
                            }).Distinct();
           
             return View(userView);
+        }
+        public IActionResult Export()
+        {
+            var data = (from r in _db.Routes
+                                      join b in _db.BusDetails
+                                      on r.Id equals b.RouteId into n
+                                      from m in n.DefaultIfEmpty()
+                                      select new RouteViewModel
+                                      {
+                                          Id = r.Id,
+                                          RouteName = r.RouteName,
+                                          NumberOfStops = r.NumberOfStops,
+                                          BusCount = r.BusCount,
+                                          PermitedBus = r.BusDetails.Count(),
+                                          RemainingBusPermit = r.BusCount - r.BusDetails.Count(),
+                                          RouteMapLink = r.RouteMapLink,
+                                      }).Distinct();
+            var sb = new StringBuilder();
+            sb.AppendLine("Id,Route Name,Number of Stops , Bus Permit , Permitted Bus , Remaining Bus Permit, Route Map Link");
+            foreach(var item in data)
+            {
+                sb.AppendLine($"{item.Id},{item.RouteName},{item.NumberOfStops},{item.BusCount},{item.PermitedBus},{item.RemainingBusPermit},{item.RouteMapLink}");
+            }
+            return File(Encoding.UTF8.GetBytes(sb.ToString()), "text/csv", "RouteDetails.csv");
+
         }
 
         [HttpGet]
@@ -125,6 +151,6 @@ namespace Bus.Web.Controllers
 
             return RedirectToAction("Index");
         }
-    
+     
     }
 }

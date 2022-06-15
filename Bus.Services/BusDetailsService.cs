@@ -9,7 +9,7 @@ namespace Bus.Services
 {
     public class BusDetailsService:IBusdetailsService
     {
-        private IRepository<BusDetails> _busRepo;
+        private readonly IRepository<BusDetails> _busRepo;
         public BusDetailsService(IRepository<BusDetails> busRepo)
         {
             _busRepo = busRepo;

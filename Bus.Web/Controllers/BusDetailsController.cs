@@ -79,6 +79,7 @@ namespace Bus.Web.Controllers
 
             }
             //ViewBag.busdetails = routeToView;
+
             var model = new BusDetailsViewModel();
             model.routeList = routeToView;
             return View(model);
@@ -131,13 +132,7 @@ namespace Bus.Web.Controllers
 
         public IActionResult Export()
         {
-            List<BusDetails> studentdetails = (from s in _db.BusDetails
-                                                    select new BusDetails
-                                                    {
-                                                        BusName = s.BusName,
-                                                        BusNo = s.BusNo,
-                                                        RouteId = s.RouteId,                                              
-                                                 }).ToList();
+            List<BusDetails> studentdetails = _busservics.GetAllBus().ToList();
 
             var sb = new StringBuilder();
             sb.AppendLine("BusName,BusNo,RouteId");
