@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace Bus.Web.Controllers
@@ -125,6 +126,12 @@ namespace Bus.Web.Controllers
 
             return RedirectToAction("Index");
         }
-    
+        public IActionResult Export()
+        {
+            var routelist = _routeService.GetAllRoute().ToList();
+            var sb = new StringBuilder();
+            return File(Encoding.UTF8.GetBytes(sb.ToString()), "text/csv", "RouteDetails.csv");
+        }
+        
     }
 }
