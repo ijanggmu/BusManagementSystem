@@ -6,6 +6,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Views\Home\Shared\**" />
+    <Content Remove="Views\Home\Shared\**" />
+    <EmbeddedResource Remove="Views\Home\Shared\**" />
+    <None Remove="Views\Home\Shared\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="CsvHelper" Version="27.2.1" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.23" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.24" />
@@ -20,10 +27,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Bus.Repo\Bus.Repo.csproj" />
     <ProjectReference Include="..\Bus.Services\Bus.Services.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Views\Home\Shared\" />
   </ItemGroup>
 
 </Project>
