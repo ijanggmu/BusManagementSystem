@@ -45,7 +45,8 @@ namespace Bus.Services
         }
         public List<BusDetails> GetDataForHome()
         {
-            var newdata = _db.BusDetails.Include(x => x.Route).ToList();
+            var newdata = _db.BusDetails.Include(x => x.Route).Where(x => x.isDisable == false).ToList();
+            
             return newdata;
         }
     }
