@@ -10,6 +10,7 @@ namespace Bus.Services
         void AddBuss(BusDetails bus);
         void UpdateBus(BusDetails bus);
         void DeleteBus(int id);
+        List<BusDetails> GetDataForHome();
 
 
     }

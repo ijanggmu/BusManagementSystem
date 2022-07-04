@@ -1,5 +1,6 @@
 ﻿using Bus.Data;
 using Bus.Repo;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -8,8 +9,10 @@ namespace Bus.Services
     public class BusDetailsService : IBusdetailsService
     {
         private readonly IRepository<BusDetails> _busRepo;
-        public BusDetailsService(IRepository<BusDetails> busRepo)
+        private readonly ApplicationDbContext _db;
+        public BusDetailsService(IRepository<BusDetails> busRepo,ApplicationDbContext db)
         {
+            _db = db;
             _busRepo = busRepo;
         }
 
@@ -39,6 +42,11 @@ namespace Bus.Services
         public void UpdateBus(BusDetails bus)
         {
             _busRepo.Update(bus);
+        }
+        public List<BusDetails> GetDataForHome()
+        {
+            var newdata = _db.BusDetails.Include(x => x.Route).ToList();
+            return newdata;
         }
     }
 }
