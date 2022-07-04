@@ -1,13 +1,11 @@
 ﻿using Bus.Data;
 using Bus.Repo;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Bus.Services
 {
-    public class BusDetailsService:IBusdetailsService
+    public class BusDetailsService : IBusdetailsService
     {
         private readonly IRepository<BusDetails> _busRepo;
         public BusDetailsService(IRepository<BusDetails> busRepo)
@@ -17,7 +15,7 @@ namespace Bus.Services
 
         public void AddBuss(BusDetails bus)
         {
-       
+
             _busRepo.Create(bus);
         }
 

@@ -2,15 +2,10 @@ using Bus.Repo;
 using Bus.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Bus.Web
 {
@@ -33,14 +28,14 @@ namespace Bus.Web
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddTransient<IRouteService, RouteService>();
             services.AddTransient<IBusdetailsService, BusDetailsService>();
-            services.AddAuthentication("CookieAuth")
-                .AddCookie("CookieAuth", config =>
-                {
-                    config.Cookie.Name = "Gradmas.Cookie";
-                    config.LoginPath = "/BusDetails/Authenticate";
-                });
+            ////services.AddAuthentication("CookieAuth")
+            ////    .AddCookie("CookieAuth", config =>
+            ////    {
+            ////        config.Cookie.Name = "Gradmas.Cookie";
+            ////        config.LoginPath = "/BusDetails/Authenticate";
+            ////    });
             services.AddControllersWithViews();
-         
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -57,7 +52,7 @@ namespace Bus.Web
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
-            
+
             app.UseStaticFiles();
 
             app.UseRouting();

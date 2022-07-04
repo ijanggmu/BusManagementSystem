@@ -1,13 +1,10 @@
-﻿using Bus.Data;
-using Bus.Repo;
+﻿using Bus.Repo;
 using Bus.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Bus.Web.Controllers
 {
@@ -15,7 +12,7 @@ namespace Bus.Web.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly ApplicationDbContext _db;
-        public HomeController(ApplicationDbContext db,ILogger<HomeController> logger)
+        public HomeController(ApplicationDbContext db, ILogger<HomeController> logger)
         {
             _logger = logger;
             _db = db;
@@ -28,7 +25,7 @@ namespace Bus.Web.Controllers
                            on b.RouteId equals r.Id
                            select new BusRouteViewModel
                            {
-                               routeId=r.Id,
+                               routeId = r.Id,
                                BusName = b.BusName,
                                BusNo = b.BusNo,
                                RouteName = r.RouteName,
@@ -40,13 +37,13 @@ namespace Bus.Web.Controllers
             var routeDetails = from b in _db.BusDetails
                                join r in _db.Routes
                                on b.RouteId equals r.Id
-                               where b.RouteId ==Id
+                               where b.RouteId == Id
                                select new RouteDetailsViewModel
                                {
                                    RouteName = r.RouteName,
                                    BusNo = b.BusNo,
-                                   BusName = b.BusName,             
-                                   TotalBus=r.BusDetails.Count()                                
+                                   BusName = b.BusName,
+                                   TotalBus = r.BusDetails.Count()
                                };
             return View(routeDetails);
         }
@@ -74,6 +71,6 @@ namespace Bus.Web.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
- 
+
     }
 }

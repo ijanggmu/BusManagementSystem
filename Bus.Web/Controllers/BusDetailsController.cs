@@ -1,9 +1,7 @@
 ﻿using Bus.Data;
-using Bus.Repo;
 using Bus.Services;
 using Bus.Web.Models;
 using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,24 +19,24 @@ namespace Bus.Web.Controllers
             _services = services;
             _busservics = busservices;
         }
-        [Authorize]
         public IActionResult Index()
         {
             var data = _busservics.GetAllBus().ToList();
             var busToView = new List<BusDetailsViewModel>();
-            foreach(var items in data)
+            foreach (var items in data)
             {
                 var entity = new BusDetailsViewModel();
-                
+
                 entity.Id = items.Id;
                 entity.BusNo = items.BusNo;
                 entity.BusName = items.BusName;
                 entity.routeId = items.RouteId;
                 busToView.Add(entity);
-               
+
             }
             return View(busToView);
         }
+        
         public IActionResult Authenticate()
         {
             var grandmaClaims = new List<Claim>()
@@ -55,15 +53,12 @@ namespace Bus.Web.Controllers
             };
             var grandmaIdentity = new ClaimsIdentity(grandmaClaims, "Grandma Identity");
             var licenseIdentity = new ClaimsIdentity(licenseClaims, "Government");
-            var userPrinciple = new ClaimsPrincipal(new[] { grandmaIdentity , licenseIdentity });
+            var userPrinciple = new ClaimsPrincipal(new[] { grandmaIdentity, licenseIdentity });
             HttpContext.SignInAsync(userPrinciple);
             return RedirectToAction("Create");
-
-
-
-
         }
 
+        [HttpGet("create")]
         public IActionResult Create()
         {
             var data = _services.GetAllRoute().ToList();
@@ -123,6 +118,7 @@ namespace Bus.Web.Controllers
             return RedirectToAction("index");
 
         }
+        [HttpGet("Index")]
         public IActionResult IndexApi()
         {
             return View();

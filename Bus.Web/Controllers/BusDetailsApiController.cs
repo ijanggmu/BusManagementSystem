@@ -1,13 +1,11 @@
 ﻿using Bus.Data;
 using Bus.Services;
 using Bus.Web.Models;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Bus.Web.Controllers
 {
-    [Authorize]
+    
     [Route("api/[controller]")]
     [ApiController]
 
@@ -18,8 +16,9 @@ namespace Bus.Web.Controllers
         {
             _busdetailsService = busdetailsService;
         }
-
-        public object GetAllBusDetails () {
+        [HttpGet]
+        public object GetAllBusDetails()
+        {
             var busdetails = _busdetailsService.GetAllBus();
             return Ok(busdetails);
         }
@@ -41,7 +40,7 @@ namespace Bus.Web.Controllers
             bus.RouteId = model.routeId;
             _busdetailsService.AddBuss(bus);
         }
-        [HttpGet("edit/{id?}") ]
+        [HttpGet("edit/{id?}")]
         public object edit(int id)
         {
             var edit = new BusDetailsViewModel();

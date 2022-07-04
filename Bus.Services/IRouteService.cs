@@ -1,7 +1,6 @@
 ﻿using Bus.Data;
-using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
 
 namespace Bus.Services
 {
@@ -13,6 +12,7 @@ namespace Bus.Services
         void InsertRoute(Route route);
         void UpdateRoute(Route route);
         void DeleteRoute(int id);
-        
+        List<Route> GetIndexData();
+
     }
 }
