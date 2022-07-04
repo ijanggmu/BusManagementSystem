@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace Bus.Data
 {
@@ -10,5 +11,6 @@ namespace Bus.Data
         public int BusNo { get; set; }
         public int RouteId { get; set; }
         public virtual Route Route { get; set; }
+
     }
 }

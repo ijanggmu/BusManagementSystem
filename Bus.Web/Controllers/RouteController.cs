@@ -76,6 +76,7 @@ namespace Bus.Web.Controllers
         [HttpGet]
         public IActionResult Create()
         {
+            
             return View();
         }
 

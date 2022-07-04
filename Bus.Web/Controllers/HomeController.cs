@@ -37,7 +37,7 @@ namespace Bus.Web.Controllers
 
             var newData = _busRepository.GetDataForHome().Select(p => new BusRouteViewModel
             {
-                routeId = p.Id,
+                routeId = p.RouteId,
                 BusName = p.BusName,
                 BusNo = p.BusNo,
                 RouteName = p.Route.RouteName,

@@ -92,8 +92,14 @@ namespace Bus.Web.Controllers
         }
         public IActionResult Delete(int id)
         {
-            _busservics.DeleteBus(id);
-            return RedirectToAction(@"index");
+            var data=_busservics.GetBusbyID(id);
+            if ( data != null ) 
+            {
+                data.isDisable = true;
+                _busservics.UpdateBus(data);
+            };
+            //_busservics.DeleteBus(id);
+            return RedirectToAction("index");
         }
         [HttpGet]
         public IActionResult Edit(int id)

@@ -31,7 +31,7 @@ namespace Bus.Services
 
         public IEnumerable<BusDetails> GetAllBus()
         {
-            return _busRepo.GetAll().ToList();
+            return _busRepo.GetAll().Where(x=>x.isDisable==false).ToList();
         }
 
         public BusDetails GetBusbyID(int id)

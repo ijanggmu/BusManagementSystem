@@ -50,14 +50,12 @@ namespace Bus.Repo
         {
             _db.SaveChanges();
         }
-
         public void Update(T entity)
         {
             if (entity == null)
             {
                 throw new ArgumentNullException("entity");
             }
-
             _db.SaveChanges();
         }
     }
