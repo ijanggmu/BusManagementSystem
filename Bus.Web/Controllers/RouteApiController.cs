@@ -46,5 +46,10 @@ namespace Bus.Web.Controllers
             return Ok(data);
 
         }
+        [HttpGet("Delete")]
+        public void Delete(int id)
+        {
+            _routeService.DeleteRoute(id);
+        }
     }
 }

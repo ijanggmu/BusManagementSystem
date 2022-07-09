@@ -34,7 +34,6 @@ namespace Bus.Web.Controllers
         public void create(BusDetailsViewModel model)
         {
             var bus = new BusDetails();
-            bus.Id = model.Id;
             bus.BusName = model.BusName;
             bus.BusNo = model.BusNo;
             bus.RouteId = model.routeId;
@@ -51,6 +50,11 @@ namespace Bus.Web.Controllers
             edit.routeId = details.RouteId;
             return Ok(edit);
 
+        }
+        [HttpDelete("delete")]
+        public void delete (int id)
+        {
+            _busdetailsService.DeleteBus(id);
         }
     }
 }

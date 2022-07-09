@@ -124,7 +124,7 @@ namespace Bus.Web.Controllers
             return RedirectToAction("index");
 
         }
-        [HttpGet("Index")]
+        [HttpGet("Indexs")]
         public IActionResult IndexApi()
         {
             return View();

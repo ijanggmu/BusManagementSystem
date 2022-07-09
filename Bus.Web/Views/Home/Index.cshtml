@@ -125,6 +125,15 @@
             var fltr=Search(value,array)
             ShowAllReservation(fltr)
         });
+        $('#add').click(function(){
+            alert("hello");
+            var data = {};
+            data.BusNo = $('#txtProductName').val();
+            data.BusName = $('#txtProductPrice').val();
+            data.routeId = $('#txtProductQuantity').val();
+            CreateNewBus(data);
+            console.log(data);
+        });
 
         $("#getall").click(function(){
             alert( "Handler for .click() called." );
@@ -137,11 +146,16 @@
             console.log(id);
             GetById(id);
         });
-    function CreateNewBus(){
+
+    function CreateNewBus(mod){
+       
         $.ajax({
             type:"POST",
             url:"https://localhost:44392/api/busdetailsapi/",
-            success:function(){
+            dataType: "json",
+            data:mod,
+            success:function(result){
+                alert("product added");
 
             }
         })
