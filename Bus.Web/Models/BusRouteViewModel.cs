@@ -1,6 +1,4 @@
-﻿using Bus.Data;
-
-namespace Bus.Web.Models
+﻿namespace Bus.Web.Models
 {
     public class BusRouteViewModel
     {

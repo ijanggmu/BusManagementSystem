@@ -7,5 +7,7 @@
         public string RouteName { get; set; }
         public string BusName { get; set; }
         public int TotalBus { get; set; }
+
+        public string RouteMapLink { get; set; }
     }
 }

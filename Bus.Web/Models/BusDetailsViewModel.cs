@@ -9,6 +9,6 @@ namespace Bus.Web.Models
         public int BusNo { get; set; }
         public int routeId { get; set; }
         public string routeName { get; set; }
-        public List<BusDetailsViewModel> routeList{get; set;}
+        public List<BusDetailsViewModel> routeList { get; set; }
     }
 }

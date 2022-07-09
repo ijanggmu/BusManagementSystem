@@ -17,8 +17,10 @@
     <tbody>
     </tbody>
 </table>
+
 <script type="text/javascript">
     ShowAllReservation()
+
     function ShowAllReservation() {
         var xhttp = new XMLHttpRequest();
         xhttp.open("GET", "https://localhost:44392/api/busdetailsapi", true);
@@ -33,5 +35,32 @@
                 });
             }
         };
+    }
+  
+    function SaveProduct(){
+        var url="/api/BusDetailsApi/";
+        var objectProduct = {};
+        objectProduct.BusNo = $('#txtProductName').val();
+        objectProduct.BusName = $('#txtProductPrice').val();
+        objectProduct.routeId = $('#txtProductQuantity').val();
+
+        if(objectProduct){  
+            $.ajax({
+                url:url,
+                contents:"application/json",
+                dataType: "json",
+                data: JSON.stringify(objectProduct),
+                type:"Post",
+                success: function(result){
+                    alert("product added");
+                },
+                error:function(){
+                    alert("Something went wrong !!!");
+                }
+            });
+            }
+        }
+
+
     }
     </script>

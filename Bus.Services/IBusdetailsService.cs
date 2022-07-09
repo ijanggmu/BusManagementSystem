@@ -1,5 +1,4 @@
 ﻿using Bus.Data;
-using System;
 using System.Collections.Generic;
 
 namespace Bus.Services
@@ -11,6 +10,8 @@ namespace Bus.Services
         void AddBuss(BusDetails bus);
         void UpdateBus(BusDetails bus);
         void DeleteBus(int id);
+        List<BusDetails> GetDataForHome();
+
 
     }
 }

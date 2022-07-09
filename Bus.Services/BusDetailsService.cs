@@ -1,23 +1,24 @@
 ﻿using Bus.Data;
 using Bus.Repo;
-using System;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Bus.Services
 {
-    public class BusDetailsService:IBusdetailsService
+    public class BusDetailsService : IBusdetailsService
     {
-        private IRepository<BusDetails> _busRepo;
-        public BusDetailsService(IRepository<BusDetails> busRepo)
+        private readonly IRepository<BusDetails> _busRepo;
+        private readonly ApplicationDbContext _db;
+        public BusDetailsService(IRepository<BusDetails> busRepo,ApplicationDbContext db)
         {
+            _db = db;
             _busRepo = busRepo;
         }
 
         public void AddBuss(BusDetails bus)
         {
-       
+
             _busRepo.Create(bus);
         }
 
@@ -30,7 +31,7 @@ namespace Bus.Services
 
         public IEnumerable<BusDetails> GetAllBus()
         {
-            return _busRepo.GetAll().ToList();
+            return _busRepo.GetAll().Where(x=>x.isDisable==false).ToList();
         }
 
         public BusDetails GetBusbyID(int id)
@@ -41,6 +42,12 @@ namespace Bus.Services
         public void UpdateBus(BusDetails bus)
         {
             _busRepo.Update(bus);
+        }
+        public List<BusDetails> GetDataForHome()
+        {
+            var newdata = _db.BusDetails.Include(x => x.Route).Where(x => x.isDisable == false).ToList();
+            
+            return newdata;
         }
     }
 }

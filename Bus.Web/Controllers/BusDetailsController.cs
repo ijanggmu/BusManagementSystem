@@ -1,9 +1,7 @@
 ﻿using Bus.Data;
-using Bus.Repo;
 using Bus.Services;
 using Bus.Web.Models;
 using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,31 +14,29 @@ namespace Bus.Web.Controllers
     {
         private readonly IBusdetailsService _busservics;
         private readonly IRouteService _services;
-        private readonly ApplicationDbContext _db;
-        public BusDetailsController(IBusdetailsService busservices, IRouteService services, ApplicationDbContext db)
+        public BusDetailsController(IBusdetailsService busservices, IRouteService services)
         {
             _services = services;
             _busservics = busservices;
-            _db = db;
         }
-        [Authorize]
         public IActionResult Index()
         {
             var data = _busservics.GetAllBus().ToList();
             var busToView = new List<BusDetailsViewModel>();
-            foreach(var items in data)
+            foreach (var items in data)
             {
                 var entity = new BusDetailsViewModel();
-                
+
                 entity.Id = items.Id;
                 entity.BusNo = items.BusNo;
                 entity.BusName = items.BusName;
                 entity.routeId = items.RouteId;
                 busToView.Add(entity);
-               
+
             }
             return View(busToView);
         }
+        
         public IActionResult Authenticate()
         {
             var grandmaClaims = new List<Claim>()
@@ -57,15 +53,12 @@ namespace Bus.Web.Controllers
             };
             var grandmaIdentity = new ClaimsIdentity(grandmaClaims, "Grandma Identity");
             var licenseIdentity = new ClaimsIdentity(licenseClaims, "Government");
-            var userPrinciple = new ClaimsPrincipal(new[] { grandmaIdentity , licenseIdentity });
+            var userPrinciple = new ClaimsPrincipal(new[] { grandmaIdentity, licenseIdentity });
             HttpContext.SignInAsync(userPrinciple);
             return RedirectToAction("Create");
-
-
-
-
         }
 
+        [HttpGet("create")]
         public IActionResult Create()
         {
             var data = _services.GetAllRoute().ToList();
@@ -79,6 +72,7 @@ namespace Bus.Web.Controllers
 
             }
             //ViewBag.busdetails = routeToView;
+
             var model = new BusDetailsViewModel();
             model.routeList = routeToView;
             return View(model);
@@ -98,8 +92,14 @@ namespace Bus.Web.Controllers
         }
         public IActionResult Delete(int id)
         {
-            _busservics.DeleteBus(id);
-            return RedirectToAction(@"index");
+            var data=_busservics.GetBusbyID(id);
+            if ( data != null ) 
+            {
+                data.isDisable = true;
+                _busservics.UpdateBus(data);
+            };
+            //_busservics.DeleteBus(id);
+            return RedirectToAction("index");
         }
         [HttpGet]
         public IActionResult Edit(int id)
@@ -124,6 +124,7 @@ namespace Bus.Web.Controllers
             return RedirectToAction("index");
 
         }
+        [HttpGet("Indexs")]
         public IActionResult IndexApi()
         {
             return View();
@@ -131,16 +132,10 @@ namespace Bus.Web.Controllers
 
         public IActionResult Export()
         {
-            List<BusDetails> studentdetails = (from s in _db.BusDetails
-                                                    select new BusDetails
-                                                    {
-                                                        BusName = s.BusName,
-                                                        BusNo = s.BusNo,
-                                                        RouteId = s.RouteId,                                              
-                                                 }).ToList();
+            List<BusDetails> studentdetails = _busservics.GetAllBus().ToList();
 
             var sb = new StringBuilder();
-            sb.AppendLine("BusName,BusNo,RouteId");
+            sb.AppendLine("Bus Name,Bus No,Route Id");
 
             foreach (var item in studentdetails)
             {

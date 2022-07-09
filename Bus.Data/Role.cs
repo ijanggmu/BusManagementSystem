@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Bus.Data
+﻿namespace Bus.Data
 {
     public static class Role
     {

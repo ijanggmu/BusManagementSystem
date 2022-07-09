@@ -1,5 +1,3 @@
-using System;
-
 namespace Bus.Web.Models
 {
     public class ErrorViewModel
