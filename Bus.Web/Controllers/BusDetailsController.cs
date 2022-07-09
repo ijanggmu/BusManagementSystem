@@ -78,7 +78,7 @@ namespace Bus.Web.Controllers
             return View(model);
         }
 
-        [HttpPost]
+        [HttpPost("create")]
         public IActionResult Create(BusDetailsViewModel model)
         {
             var bus = new BusDetails();
