@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using Bus.Data.Common;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace Bus.Data

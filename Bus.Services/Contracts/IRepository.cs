@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Bus.Repo
+namespace Bus.Services.Contracts
 {
     public interface IRepository<T> where T : class
     {

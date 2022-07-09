@@ -1,5 +1,6 @@
 using Bus.Repo;
 using Bus.Services;
+using Bus.Services.Contracts;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;

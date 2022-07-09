@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace Bus.Data
+namespace Bus.Data.Common
 {
     public class BaseEntity
     {

@@ -1,4 +1,6 @@
-﻿namespace Bus.Data
+﻿using Bus.Data.Common;
+
+namespace Bus.Data
 {
     public class User : BaseEntity
     {

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Bus.Data.Common;
+using System.Collections.Generic;
 
 namespace Bus.Data
 {

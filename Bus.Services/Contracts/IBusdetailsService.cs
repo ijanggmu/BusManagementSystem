@@ -1,7 +1,7 @@
 ﻿using Bus.Data;
 using System.Collections.Generic;
 
-namespace Bus.Services
+namespace Bus.Services.Contracts
 {
     public interface IBusdetailsService
     {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Bus.Services
+namespace Bus.Services.Contracts
 {
     public interface IRouteService
     {

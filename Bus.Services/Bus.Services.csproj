@@ -16,7 +16,18 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Bus.Data\Bus.Data.csproj" />
-    <ProjectReference Include="..\Bus.Repo\Bus.Repo.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Features\BusFeatures\Handlers\Commands\" />
+    <Folder Include="Features\BusFeatures\Handlers\Queries\" />
+    <Folder Include="Features\BusFeatures\Requests\Commands\" />
+    <Folder Include="Features\BusFeatures\Requests\Queries\" />
+    <Folder Include="Features\RouteFeatures\Handlers\Commands\" />
+    <Folder Include="Features\RouteFeatures\Handlers\Queries\" />
+    <Folder Include="Features\RouteFeatures\Requests\Commands\" />
+    <Folder Include="Features\RouteFeatures\Requests\Queries\" />
+    <Folder Include="Dtos\" />
   </ItemGroup>
 
 </Project>
