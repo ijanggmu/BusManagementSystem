@@ -2,18 +2,21 @@
     ViewData["Title"] = "Home Page";
 }
 <ul class="nav nav-tabs" id="myTab" role="tablist">
-  <li class="nav-item" role="presentation">
-    <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">DETAILS</button>
-  </li>
-  <li class="nav-item" role="presentation">
-    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#api" type="button" role="tab" aria-controls="api" aria-selected="false">API DETAILS</button>
-  </li>
-  <li class="nav-item" role="presentation">
-    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#get-all" type="button" role="tab" aria-controls="get-all" aria-selected="false">API GET ALL</button>
-  </li>
-   <li class="nav-item" role="presentation">
-    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#get-by-id" type="button" role="tab" aria-controls="get-by-id" aria-selected="false">API GET BY ID</button>
-  </li>
+    <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">DETAILS</button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#api" type="button" role="tab" aria-controls="api" aria-selected="false">API DETAILS</button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#get-all" type="button" role="tab" aria-controls="get-all" aria-selected="false">API GET ALL</button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#get-by-id" type="button" role="tab" aria-controls="get-by-id" aria-selected="false">API GET BY ID</button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#datatable" type="button" role="tab" aria-controls="datatable" aria-selected="false">DataTable- Jquery</button>
+    </li>
 </ul>
 
 <div class="tab-content" id="myTabContent">
@@ -28,56 +31,71 @@
     <partial name="_IndexFromAPI"/>
 </div>
 </div>
-<div class="tab-pane fade" id="get-all" role="tabpanel" aria-labelledby="get-all">
+  <div class="tab-pane fade" id="get-all" role="tabpanel" aria-labelledby="get-all">
       <div>
           <h1 style="color:#303133;">DETAILS FROM API</h1>
-          </div>
-          <button class="btn btn-light" id="getall">GetAll</button>
+      </div>
+      <button class="btn btn-light" id="getall">GetAll</button>
       <div class="row table-responsive">
           <table class="table table-hover mt-5 mb-5 text-center" id="apiTableByClick">
-                <thead>
-                    <tr>
-                <th>ID</th>
-                <th>Bus No.</th>
-                <th>Bus Name </th>
-                <th>Route </th>
-            </tr>
-        </thead>
-        <tbody >
-           
-        </tbody>
-    </table>
-</div>
-</div>
-<div class="tab-pane fade" id="get-by-id" role="tabpanel" aria-labelledby="get-by-id">
-        <h1>Get BY ID</h1>
-        <div class="ViewDetailButton" style="margin-bottom:30px;float:right;">
-    <input type="text" id="Id" placeholder="Enter the Bus Id"
-           style="
+              <thead>
+                  <tr>
+                      <th>ID</th>
+                      <th>Bus No.</th>
+                      <th>Bus Name </th>
+                      <th>Route </th>
+                  </tr>
+              </thead>
+              <tbody>
+              </tbody>
+          </table>
+      </div>
+
+      <div class="tab-pane fade" id="datatable" role="tabpanel" aria-labelledby="datatable">
+          <div>
+              <h1 style="color:#303133;">DataTable - Jquery</h1>
+              <table class="table table-active" id="exampleTable">
+                  <thead>
+                      <tr>
+                          <th>ID</th>
+                          <th>Bus No</th>
+                          <th>Bus Name</th>
+                          <th>Route</th>
+                      </tr>
+                  </thead>
+              </table>
+          </div>
+      </div>
+
+      <div class="tab-pane fade" id="get-by-id" role="tabpanel" aria-labelledby="get-by-id">
+          <h1>Get BY ID</h1>
+          <div class="ViewDetailButton" style="margin-bottom:30px;float:right;">
+              <input type="text" id="Id" placeholder="Enter the Bus Id"
+                     style="
                 height:38px;
                 border:none;
                 border-bottom:1px solid #aaa;
                 text-align:center;
                 margin:-1px" />
-    <button class="btn btn-outline-success"id="ViewDetails" >ViewDetails</button>
-</div>
-        <br />
+              <button class="btn btn-outline-success" id="ViewDetails">ViewDetails</button>
+          </div>
+          <br />
 
-<table id="apiTablesById" class="table table-striped mb-5">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Bus No.</th>
-            <th>Bus Name </th>
-            <th>Route details</th>
-        </tr>
-    </thead>
-    <tbody>
-    </tbody>
-</table>
-    </div>
+          <table id="apiTablesById" class="table table-striped mb-5">
+              <thead>
+                  <tr>
+                      <th>ID</th>
+                      <th>Bus No.</th>
+                      <th>Bus Name </th>
+                      <th>Route details</th>
+                  </tr>
+              </thead>
+              <tbody>
+              </tbody>
+          </table>
+      </div>
+  </div>
 </div>
-
 @*<table class="table table-striped mt-2" id="apiTable">
     <thead>
         <tr>
@@ -104,7 +122,31 @@
     };
     var array;
     var busById;
-    $(document).ready(function(){
+    $(document).ready(function () {
+        $.ajax({
+            type: "GET",
+            url: "https://localhost:44392/api/busdetailsapi",
+            dataType: "json",
+            success: (response) => {
+                console.log(response)
+                $('#exampleTable').DataTable({
+                    bLengthChange: true,
+                    lengthMenu: [[5, 10, -1], [5, 10, "All"]],
+                    bFilter: true,
+                    bSort: true,
+                    bPaginate: true,
+                    data: response,
+                    columns: [{ 'data': 'id' },
+                    { 'data': 'busNo' },
+                    { 'data': 'busName' },
+                    { 'data': 'routeId' }]
+                });
+            },
+            error: (response) => {
+                alert(response);
+            }
+        });
+
         $.ajax({
             type:"GET",
             url:"https://localhost:44392/api/busdetailsapi",
