@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="CsvHelper" Version="27.2.1" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.24" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.24" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.24">
@@ -19,15 +20,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\BusFeatures\Handlers\Commands\" />
-    <Folder Include="Features\BusFeatures\Handlers\Queries\" />
-    <Folder Include="Features\BusFeatures\Requests\Commands\" />
-    <Folder Include="Features\BusFeatures\Requests\Queries\" />
+    <Folder Include="Dtos\Bus\Validators\" />
+    <Folder Include="Dtos\Route\Validators\" />
     <Folder Include="Features\RouteFeatures\Handlers\Commands\" />
     <Folder Include="Features\RouteFeatures\Handlers\Queries\" />
     <Folder Include="Features\RouteFeatures\Requests\Commands\" />
     <Folder Include="Features\RouteFeatures\Requests\Queries\" />
-    <Folder Include="Dtos\" />
   </ItemGroup>
 
 </Project>

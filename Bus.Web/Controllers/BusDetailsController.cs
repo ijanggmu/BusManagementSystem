@@ -79,11 +79,10 @@ namespace Bus.Web.Controllers
             return View(model);
         }
 
-        [HttpPost]
+        [HttpPost("create")]
         public IActionResult Create(BusDetailsViewModel model)
         {
             var bus = new BusDetails();
-            bus.Id = model.Id;
             bus.BusName = model.BusName;
             bus.BusNo = model.BusNo;
             bus.RouteId = model.routeId;
