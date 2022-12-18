@@ -1,11 +1,14 @@
 using Bus.Repo;
 using Bus.Services;
+using Bus.Services.Contracts;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System.Reflection;
 
 namespace Bus.Web
 {
@@ -25,9 +28,12 @@ namespace Bus.Web
                 options => options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection"))
                 );
+            services.ConfigureApplicationServices();
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddTransient<IRouteService, RouteService>();
             services.AddTransient<IBusdetailsService, BusDetailsService>();
+
+
             ////services.AddAuthentication("CookieAuth")
             ////    .AddCookie("CookieAuth", config =>
             ////    {

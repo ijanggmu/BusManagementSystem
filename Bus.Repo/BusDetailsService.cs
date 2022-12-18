@@ -1,5 +1,6 @@
 ﻿using Bus.Data;
 using Bus.Repo;
+using Bus.Services.Contracts;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +23,7 @@ namespace Bus.Services
             _busRepo.Create(bus);
         }
 
+
         public void DeleteBus(int id)
         {
             var bus = _busRepo.GetById(id);
@@ -31,6 +33,7 @@ namespace Bus.Services
 
         public IEnumerable<BusDetails> GetAllBus()
         {
+
             return _busRepo.GetAll().Where(x=>x.isDisable==false).ToList();
         }
 

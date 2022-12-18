@@ -1,17 +1,16 @@
 ﻿using Bus.Data.Common;
+using Bus.Services.Dtos.Common;
+using Bus.Services.Dtos.Route;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace Bus.Data
+namespace Bus.Services.Dtos.Bus
 {
-    public class BusDetails : BaseEntity
+    public class UpdateBusDetailsDto : BaseEntityDto
     {
-        [Required]
         public string BusName { get; set; }
-        [Required]
         public int BusNo { get; set; }
         public int RouteId { get; set; }
-        public virtual Route Route { get; set; }
 
     }
 }

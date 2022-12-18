@@ -1,4 +1,6 @@
 ﻿using Bus.Data;
+using Bus.Data.Common;
+using Bus.Services.Contracts;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

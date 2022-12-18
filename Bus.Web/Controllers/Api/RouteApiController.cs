@@ -1,9 +1,10 @@
 ﻿using Bus.Data;
 using Bus.Services;
+using Bus.Services.Contracts;
 using Bus.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Bus.Web.Controllers
+namespace Bus.Web.Controllers.Api
 {
     [Route("api/[controller]")]
     [ApiController]

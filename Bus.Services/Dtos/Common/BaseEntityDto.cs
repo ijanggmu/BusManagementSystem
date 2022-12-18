@@ -1,9 +1,9 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace Bus.Data
+namespace Bus.Services.Dtos.Common
 {
-    public class BaseEntity
+    public class BaseEntityDto
     {
         [Key]
         public int Id { get; set; }
