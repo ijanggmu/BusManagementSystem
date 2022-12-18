@@ -1,0 +1,22 @@
+﻿@model IEnumerable<BusRouteViewModel>
+<div class="row table-responsive">
+    <table class="table table-hover mt-5 mb-5 text-center">
+        <thead>
+            <tr>
+                <th>Bus No.</th>
+                <th>Bus Name </th>
+                <th>Route </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.BusNo</td>
+                    <td>@item.BusName</td>
+                    <td><a asp-controller="home" asp-action="routedetailview" asp-route-id=@item.routeId>@item.RouteName</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

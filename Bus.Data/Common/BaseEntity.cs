@@ -1,13 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
 
-namespace Bus.Data
+namespace Bus.Data.Common
 {
     public class BaseEntity
     {
         [Key]
         public int Id { get; set; }
+
+        [DefaultValue("false")]
+        public bool isDisable { get; set; }
     }
 }

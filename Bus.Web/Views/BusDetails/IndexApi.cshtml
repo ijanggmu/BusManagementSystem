@@ -1,0 +1,66 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<script src="http://code.jquery.com/jquery-plugins.js"></script>
+<script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
+<div><h1>API TABLE FOR BUS DETAILS</h1></div>
+<table id="apiTable">
+    <thead>
+        <tr>
+             <th>Bus No.</th>
+              <th>Bus Name</th>
+              <th>Route Details</th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+
+<script type="text/javascript">
+    ShowAllReservation()
+
+    function ShowAllReservation() {
+        var xhttp = new XMLHttpRequest();
+        xhttp.open("GET", "https://localhost:44392/api/busdetailsapi", true);
+        xhttp.send();
+
+        xhttp.onreadystatechange = function () {
+            var tbody = document.getElementById("apiTable").querySelector("tbody");
+            tbody.innerHTML = "";
+            if (this.readyState == 4 && this.status == 200) {
+                JSON.parse(this.responseText).forEach(function (data) {
+                    tbody.innerHTML = "<tr><td>" + data.busNo. + "</td>" + "<td>" + data.busName + "</td>" + "<td>" + data.routId + "</td></tr>";
+                });
+            }
+        };
+    }
+  
+    function SaveProduct(){
+        var url="/api/BusDetailsApi/";
+        var objectProduct = {};
+        objectProduct.BusNo = $('#txtProductName').val();
+        objectProduct.BusName = $('#txtProductPrice').val();
+        objectProduct.routeId = $('#txtProductQuantity').val();
+
+        if(objectProduct){  
+            $.ajax({
+                url:url,
+                contents:"application/json",
+                dataType: "json",
+                data: JSON.stringify(objectProduct),
+                type:"Post",
+                success: function(result){
+                    alert("product added");
+                },
+                error:function(){
+                    alert("Something went wrong !!!");
+                }
+            });
+            }
+        }
+
+
+    }
+    </script>

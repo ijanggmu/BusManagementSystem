@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Bus.Data.Common;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
 
 namespace Bus.Data
 {
@@ -11,7 +10,10 @@ namespace Bus.Data
         public string BusName { get; set; }
         [Required]
         public int BusNo { get; set; }
-       
+        public int RouteId { get; set; }
+        public virtual Route Route { get; set; }
+
+        public virtual Route Route { get; set; }
         public virtual Route Route { get; set; }
     }
 }

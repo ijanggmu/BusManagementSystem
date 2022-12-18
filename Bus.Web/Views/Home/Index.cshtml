@@ -1,24 +1,232 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-<div class="container">
-    <div class="row">
-        <div class="card" style="width: 18rem;  height:350px; width:300px; margin:20px;">
-            <img class="card-img-top" src="~/images/BusRoute.jpg" alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">Route Details</h5>
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item" role="presentation">
+    <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">DETAILS</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#api" type="button" role="tab" aria-controls="api" aria-selected="false">API DETAILS</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#get-all" type="button" role="tab" aria-controls="get-all" aria-selected="false">API GET ALL</button>
+  </li>
+   <li class="nav-item" role="presentation">
+    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#get-by-id" type="button" role="tab" aria-controls="get-by-id" aria-selected="false">API GET BY ID</button>
+  </li>
+</ul>
 
-                <a class="btn btn-info" asp-action="Index" asp-controller="Route">Route Details</a>
-            </div>
-        </div>
+<div class="tab-content" id="myTabContent">
 
-        <div class="card" style="width: 18rem; height:350px; width:300px; margin:20px">
-            <img class="card-img-top" src="~/images/Bus.jpg" alt="Card image cap" style="height:240px;">
-            <div class="card-body">
-                <h5 class="card-title">Bus Details</h5>
+  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+        @{
+            await Html.RenderPartialAsync("_IndexFromDB");
+        };
+   </div>
+  <div class="tab-pane fade" id="api" role="tabpanel" aria-labelledby="api">
+      <div>
+    <partial name="_IndexFromAPI"/>
+</div>
+</div>
+<div class="tab-pane fade" id="get-all" role="tabpanel" aria-labelledby="get-all">
+      <div>
+          <h1 style="color:#303133;">DETAILS FROM API</h1>
+          </div>
+          <button class="btn btn-light" id="getall">GetAll</button>
+      <div class="row table-responsive">
+          <table class="table table-hover mt-5 mb-5 text-center" id="apiTableByClick">
+                <thead>
+                    <tr>
+                <th>ID</th>
+                <th>Bus No.</th>
+                <th>Bus Name </th>
+                <th>Route </th>
+            </tr>
+        </thead>
+        <tbody >
+           
+        </tbody>
+    </table>
+</div>
+</div>
+<div class="tab-pane fade" id="get-by-id" role="tabpanel" aria-labelledby="get-by-id">
+        <h1>Get BY ID</h1>
+        <div class="ViewDetailButton" style="margin-bottom:30px;float:right;">
+    <input type="text" id="Id" placeholder="Enter the Bus Id"
+           style="
+                height:38px;
+                border:none;
+                border-bottom:1px solid #aaa;
+                text-align:center;
+                margin:-1px" />
+    <button class="btn btn-outline-success"id="ViewDetails" >ViewDetails</button>
+</div>
+        <br />
 
-                <a class="btn btn-info" asp-action="Index" asp-controller="BusDetails">Bus Details</a>
-            </div>
-        </div>
+<table id="apiTablesById" class="table table-striped mb-5">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Bus No.</th>
+            <th>Bus Name </th>
+            <th>Route details</th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
     </div>
 </div>
+
+@*<table class="table table-striped mt-2" id="apiTable">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Bus No.</th>
+            <th>Bus Name </th>
+            <th>Route details</th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>*@
+
+@section Scripts {
+<script type="text/javascript">
+    $("#Create").click(function() {
+        alert("created dialog box")
+        $("#create-dialouge").dialog();
+
+    });
+    function showdialog(){
+        alert("dialog");
+        $("#exampleModal").modal("show");
+    };
+    var array;
+    var busById;
+    $(document).ready(function(){
+        $.ajax({
+            type:"GET",
+            url:"https://localhost:44392/api/busdetailsapi",
+            dataType:"json",
+            success:function(result){
+                console.log(result);
+                array=result;
+                ShowAllReservation(result);
+        },
+            error:function(req,status,error){
+                console.log(status);
+                }
+        });
+
+        $('#search-input').on('keyup',function(){
+            var value=$(this).val()
+            console.log(value)
+            var fltr=Search(value,array)
+            ShowAllReservation(fltr)
+        });
+        $('#add').click(function(){
+            alert("hello");
+            var data = {};
+            data.BusNo = $('#txtProductName').val();
+            data.BusName = $('#txtProductPrice').val();
+            data.routeId = $('#txtProductQuantity').val();
+            CreateNewBus(data);
+            console.log(data);
+        });
+
+        $("#getall").click(function(){
+            alert( "Handler for .click() called." );
+            ShowAllByClick(array);
+        });
+
+        $("#ViewDetails").click(function(){
+            alert("clicked");
+            id=document.getElementById("Id").value;
+            console.log(id);
+            GetById(id);
+        });
+
+    function CreateNewBus(mod){
+       
+        $.ajax({
+            type:"POST",
+            url:"https://localhost:44392/api/busdetailsapi/",
+            dataType: "json",
+            data:mod,
+            success:function(result){
+                alert("product added");
+
+            }
+        })
+    }
+    function GetById(id){
+        $.ajax({
+            type:"GET",
+            url:"https://localhost:44392/api/busdetailsapi/"+id,
+            dataType:"json",
+            success:function(response){
+                var busDetailById=document.getElementById("apiTablesById").querySelector("tbody");
+                busDetailById.innerHTML="";
+                busDetailById.innerHTML+=`<tr><td>${response.id}</td>
+                                              <td>${response.busNo}</td>
+                                              <td>${response.busName}</td>
+                                              <td>${response.routeId}</td></tr>`;
+                                       }
+                });
+                       };
+
+    function ShowAllReservation(data,aa) { 
+            var tbody = document.getElementById("apiTable").querySelector("tbody");
+            tbody.innerHTML = "";
+                for(i=0;i<data.length;i++) {
+                    tbody.innerHTML += `<tr> <td> ${data[i].id}  </td>
+                        <td> ${data[i].busNo} </td>
+                        <td> ${data[i].busName} </td>
+                        <td> ${data[i].routeId} </td></tr>`;
+                };
+            };
+
+    function ShowAllByClick(data) { 
+            var tbody = document.getElementById("apiTableByClick").querySelector("tbody");
+            tbody.innerHTML = "";
+                for(i=0;i<data.length;i++) {
+                    tbody.innerHTML += `<tr> <td> ${data[i].id}  </td>
+                        <td> ${data[i].busNo} </td>
+                        <td> ${data[i].busName} </td>
+                        <td> ${data[i].routeId} </td></tr>`;
+                };
+            };
+    function Search(value,data){
+        var filterdata=[];
+        for(i=0;i<data.length;i++){
+            value=value.toLowerCase()
+            var name=data[i].busName.toLowerCase()
+            if(name.includes(value)){
+                filterdata.push(data[i])
+            }
+        }
+        return filterdata;
+    }
+    function ejan() {
+        var xhttp = new XMLHttpRequest();
+        xhttp.open("GET", "https://localhost:44392/api/busdetailsapi/5", true);
+        xhttp.send();
+
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                var response = JSON.parse(this.responseText);
+                var formbody=document.getElementById("formedit");
+                formbody.innerHTML="<label>Bus No.</label>"+" "+"<input value="+response.busNo+">"+"<label>Bus Name</label>"+" "+"<input value="+response.busName+">";
+
+            }
+        };
+    }
+    
+   
+
+    })
+    
+</script>
+    
+}

@@ -1,9 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Bus.Web.Models
 {
@@ -20,5 +16,9 @@ namespace Bus.Web.Models
 
         [DisplayName("Bus Count")]
         public int BusCount { get; set; }
+        public int PermitedBus { get; set; }
+        public int RemainingBusPermit { get; set; }
+
+        public string RouteMapLink { get; set; }
     }
 }

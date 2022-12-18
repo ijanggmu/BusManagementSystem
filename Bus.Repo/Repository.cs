@@ -1,16 +1,17 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Bus.Data;
+using Bus.Data.Common;
+using Bus.Services.Contracts;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using Bus.Data;
 
 namespace Bus.Repo
 {
     public class Repository<T> : IRepository<T> where T : BaseEntity
     {
         private readonly ApplicationDbContext _db;
-        private DbSet<T> entities;
+        private readonly DbSet<T> entities;
         public Repository(ApplicationDbContext db)
         {
             _db = db;
@@ -18,7 +19,7 @@ namespace Bus.Repo
         }
         public void Create(T entity)
         {
-            if(entity == null)
+            if (entity == null)
             {
                 throw new ArgumentNullException("entity");
             }
@@ -51,14 +52,12 @@ namespace Bus.Repo
         {
             _db.SaveChanges();
         }
-
         public void Update(T entity)
         {
             if (entity == null)
             {
                 throw new ArgumentNullException("entity");
             }
-
             _db.SaveChanges();
         }
     }

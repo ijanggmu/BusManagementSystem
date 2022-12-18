@@ -1,38 +1,59 @@
 ﻿@model IEnumerable<Bus.Web.Models.BusDetailsViewModel>
-@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
-<div class="container-md">
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item" role="presentation">
+    <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Bus Deails</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Create Bus</button>
+  </li>
+</ul>
+
+<div class="tab-content" id="myTabContent">
+
+  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+      <div class="container">
     <div class="row">
         <div class="col-sm-3"> 
-<a class="btn btn-warning m-3 " asp-action="Create">Add Bus</a></div>
+<a class="btn btn-outline-success mt-3 mb-3" asp-action="Create">Add Bus</a></div>
     </div>
-    <div class="row">
-        <div class="table table-striped m-5">
-     <table>
+    <div class="row m- table-responsive">
+     <table class="table table-hover">
             <thead>
-                <th>Bus No.</th>
-                <th>Bus Name </th>
-                <th>Route details</th>
-                <th></th>
-                <th></th>
-            </th>
+                <tr>
+                    <th>Bus No.</th>
+                    <th>Bus Name </th>
+                    <th>Route Id</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
             <tbody>
                     @foreach(var item in Model)
                     {
                           <tr>
                          <td>@item.BusNo</td>
                          <td>@item.BusName</td>
-                         <td>@item.routeName</td>
-                         <td><a class="btn btn-sm btn-warning" asp-controller="BusDetails" asp-route-id="@item.Id " asp-action="Edit">Edit</a></td>
-                         <td><a class="btn btn-sm btn-danger" asp-controller="BusDetails" asp-route-id="@item.Id " asp-action="Delete">Delete</a></td>
+                         <td>@item.routeId</td>
+                         <td><a class="btn btn-sm btn-light" asp-controller="BusDetails" asp-route-id="@item.Id " asp-action="Edit">Edit</a>
+                          <a class="btn btn-sm btn-danger" asp-controller="BusDetails" asp-route-id="@item.Id " asp-action="Delete">Delete</a></td>
                      </tr>
                 }
                 </tbody>
         </table>
         </div>
-        </div>
 
+</div>
+
+<div class="col-md-6">
+    <form asp-controller="BusDetails" asp-action="Export" method="post">
+        <input type="submit" value="ExportToCSV" class="btn btn-outline-success" style="margin-top:5px;" />
+    </form>
+</div>
+</div>
+  
+<div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+    <div>
+
+    </div>
+</div>
+  <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
 </div>
