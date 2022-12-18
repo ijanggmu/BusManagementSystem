@@ -13,7 +13,5 @@ namespace Bus.Data
         public int RouteId { get; set; }
         public virtual Route Route { get; set; }
 
-        public virtual Route Route { get; set; }
-        public virtual Route Route { get; set; }
     }
 }
