@@ -1,15 +1,19 @@
-﻿<div class="col-md-4 my-auto mx-auto">
-<form>
-  <!-- Email input -->
+﻿@model Bus.Web.Models.Credentials
+<div class="col-md-4 my-auto mx-auto">
+<form method="post" asp-action="Login">
+    <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+  <!-- Username input -->
   <div class="form-outline mb-4">
-    <input type="email" id="form2Example1" class="form-control" />
-    <label class="form-label" for="form2Example1">Email address</label>
+    <label class="form-label" asp-for="UserName"></label>
+    <input type="text" asp-for="UserName" id="form2Example1" class="form-control" autofocus />
+    <span class="text-danger" asp-validation-for="UserName"></span>
   </div>
 
   <!-- Password input -->
   <div class="form-outline mb-4">
-    <input type="password" id="form2Example2" class="form-control" />
-    <label class="form-label" for="form2Example2">Password</label>
+    <label class="form-label" asp-for="Password"></label>
+    <input type="password"  asp-for="Password" class="form-control" />
+    <span class="text-danger" asp-validation-for="Password"></span>
   </div>
 
   <!-- 2 column grid layout for inline styling -->
@@ -17,8 +21,8 @@
     <div class="col d-flex justify-content-center">
       <!-- Checkbox -->
       <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="form2Example31" checked />
-        <label class="form-check-label" for="form2Example31"> Remember me </label>
+        <input class="form-check-input" type="checkbox" asp-for="IsRememberMe" checked />
+        <label class="form-check-label" asp-for="IsRememberMe"> Remember me </label>
       </div>
     </div>
 
@@ -29,7 +33,7 @@
   </div>
 
   <!-- Submit button -->
-  <button type="button" class="btn btn-primary btn-block mb-4">Sign in</button>
+  <button type="submit" class="btn btn-primary btn-block mb-4">Sign in</button>
 
   <!-- Register buttons -->
   <div class="text-center">
