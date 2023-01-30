@@ -1,15 +1,16 @@
 ﻿using Bus.Data;
 using Bus.Repo;
-using Bus.Services;
 using Bus.Services.Contracts;
 using Bus.Web.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
 namespace Bus.Web.Controllers
 {
+    [Authorize(Policy ="Admin")]
+
     public class RouteController : Controller
     {
         private readonly IRouteService _routeService;
@@ -42,8 +43,8 @@ namespace Bus.Web.Controllers
                 RouteName=p.RouteName,
                 NumberOfStops=p.NumberOfStops,
                 BusCount=p.BusCount,
-                PermitedBus=p.BusDetails.Count(),
-                RemainingBusPermit=p.BusCount- p.BusDetails.Count(),
+                PermitedBus=p.BusDetails.Count,
+                RemainingBusPermit=p.BusCount- p.BusDetails.Count,
                 RouteMapLink=p.RouteMapLink,
 
             });
@@ -59,8 +60,8 @@ namespace Bus.Web.Controllers
                 RouteName = p.RouteName,
                 NumberOfStops = p.NumberOfStops,
                 BusCount = p.BusCount,
-                PermitedBus = p.BusDetails.Count(),
-                RemainingBusPermit = p.BusCount - p.BusDetails.Count(),
+                PermitedBus = p.BusDetails.Count,
+                RemainingBusPermit = p.BusCount - p.BusDetails.Count,
                 RouteMapLink = p.RouteMapLink,
 
             });
