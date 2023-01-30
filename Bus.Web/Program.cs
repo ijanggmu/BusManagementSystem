@@ -1,12 +1,18 @@
 using Bus.Repo;
 using Bus.Services;
+using Bus.Services.Constant;
 using Bus.Services.Contracts;
+using Bus.Web;
+using Bus.Web.Authorization;
+using Bus.Web.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System;
 
 //namespace Bus.Web
 //{
@@ -33,13 +39,28 @@ builder.Services.AddDbContext<ApplicationDbContext>(
                    builder.Configuration.GetConnectionString("DefaultConnection"))
                 );
 builder.Services.ConfigureApplicationServices();
+builder.Services.RegisterDependencies();
+builder.Services.AddAuthentication(CommonConstanst.CookieName).AddCookie(CommonConstanst.CookieName, options =>
+{
+    options.Cookie.Name = CommonConstanst.CookieName;
+    options.LoginPath = "/Login";
+    options.AccessDeniedPath = "/Home/UnAuthorize";
+    options.ExpireTimeSpan = TimeSpan.FromMinutes(10);
+});
+builder.Services.AddAuthorization(
+    options => {
+        options.AddPolicy("Admin",
+            policy =>
+                policy.RequireClaim("Role", "Admin")
+                .Requirements.Add(new OldUserRequirements(3)));
+               });
+builder.Services.AddScoped<IAuthorizationHandler, OldUserRequirementsHandler>();
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddTransient<IRouteService, RouteService>();
 builder.Services.AddTransient<IBusdetailsService, BusDetailsService>();
+builder.Services.Configure<ApiUrlLink>(builder.Configuration.GetSection("ApiUrlLink"));
 
 
-////services.AddAuthentication("CookieAuth")
-////    .AddCookie("CookieAuth", config =>
 ////    {
 ////        config.Cookie.Name = "Gradmas.Cookie";
 ////        config.LoginPath = "/BusDetails/Authenticate";
